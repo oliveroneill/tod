@@ -1,4 +1,7 @@
 # tod - time of departure
+
+[![Build Status](https://travis-ci.org/oliveroneill/tod.svg?branch=master)](https://travis-ci.org/oliveroneill/tod)
+
 React native app for scheduling trips so that a notification is sent when it's time to leave.
 
 ## Table of Contents
