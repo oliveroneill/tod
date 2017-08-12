@@ -198,7 +198,7 @@ exports[`displays routes correctly 1`] = `
             ]
           }
         >
-          Arrive at 10:37 am Repeats: Tue, Wed, Sun
+          Arrive at 5:37 pm Repeats: Tue, Wed, Sun
         </Text>
       </View>
     </View>
@@ -435,7 +435,7 @@ exports[`displays routes correctly while editing 1`] = `
             ]
           }
         >
-          Arrive at 10:37 am Repeats: Tue, Wed, Sun
+          Arrive at 5:37 pm Repeats: Tue, Wed, Sun
         </Text>
       </View>
     </View>

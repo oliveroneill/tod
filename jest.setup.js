@@ -1,4 +1,5 @@
 import PushNotification from 'react-native-push-notification';
+import moment from 'moment-timezone';
 
 jest.mock('Linking', () => {
 
@@ -26,3 +27,5 @@ PushNotification.configure = jest.fn((settings) => settings.onRegister({token:"t
 Date.now = jest.fn(() => 1482363367071);
 
 global.fetch = jest.fn();
+
+moment.tz.setDefault('America/Chicago');
