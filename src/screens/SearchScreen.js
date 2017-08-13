@@ -7,7 +7,6 @@ import {
   Dimensions,
   TouchableHighlight,
   TextInput,
-  Linking,
   ListView,
   ListViewDataSource,
   Platform,
@@ -149,6 +148,14 @@ class SearchScreen extends Component {
     });
   }
 
+  openInMaps() {
+    Utils.openInMaps(moment(this.state.date),
+      transportModes[this.state.transportIndex].name,
+      {lat:this.lat, lng:this.lng},
+      {lat:this.state.destLat, lng:this.state.destLng}
+    );
+  }
+
   renderCell(rowData, sectionID) {
     const { navigate } = this.props.navigation;
     let arrival = moment.unix(rowData.arrival_time / 1000).format('h:mm a');
@@ -183,20 +190,6 @@ class SearchScreen extends Component {
         onPress={() => {navigate('AddAlert', props)}}
       />
     );
-  }
-
-  openInMaps() {
-    let date = moment(this.state.date);
-    let dateStr = date.format("MM/DD/YYYY");
-    let timeStr = date.format("HH:mm");
-    let transport = transportModes[this.state.transportIndex].name;
-    let base = "https://www.google.com/maps/dir/?api=1";
-    let originArgs = "origin="+this.lat+","+this.lng;
-    let destArgs = "destination="+this.state.destLat+","+this.state.destLng;
-    let transportArgs = "travelmode="+transport;
-    let timingArgs = "ttype=arr&date="+dateStr+"&time="+timeStr;
-    let url = base+"&"+originArgs+"&"+destArgs+"&"+transportArgs+"&"+timingArgs;
-    Linking.openURL(url);
   }
 
   initialise() {

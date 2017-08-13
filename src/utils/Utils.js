@@ -1,3 +1,7 @@
+import {
+  Linking,
+} from 'react-native';
+
 var transportModes = [
   {name:'transit', icon:'directions-transit'},
   {name:'driving', icon:'directions-car'},
@@ -26,6 +30,18 @@ class Utils {
       waitingOptions[i] = i+" mins";
     }
     return waitingOptions;
+  }
+  static openInMaps(date, transportName, origin, dest) {
+    let dateStr = date.format("MM/DD/YYYY");
+    let timeStr = date.format("HH:mm");
+    let transport = transportName;
+    let base = "https://www.google.com/maps/dir/?api=1";
+    let originArgs = "origin="+origin.lat+","+origin.lng;
+    let destArgs = "destination="+dest.lat+","+dest.lng;
+    let transportArgs = "travelmode="+transport;
+    let timingArgs = "ttype=arr&date="+dateStr+"&time="+timeStr;
+    let url = base+"&"+originArgs+"&"+destArgs+"&"+transportArgs+"&"+timingArgs;
+    Linking.openURL(url);
   }
 }
 

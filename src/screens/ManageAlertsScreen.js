@@ -86,7 +86,8 @@ class ManageAlertsScreen extends Component {
     setParams({onEdit: this.onEdit.bind(this)})
   }
   renderCell(rowData, sectionID) {
-    let arrival = moment.unix(rowData.route.arrival_time / 1000).format('h:mm a');
+    let arrivalDate = moment.unix(rowData.route.arrival_time / 1000)
+    let arrival = arrivalDate.format('h:mm a');
     let subtitle = "Arrive at "+arrival;
     let days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"];
     var repeats = "";
@@ -107,7 +108,7 @@ class ManageAlertsScreen extends Component {
         title={rowData.route.description}
         subtitle={subtitle}
         underlayColor='#e1e1e1'
-        onPress={() => {}}
+        onPress={() => {Utils.openInMaps(arrivalDate, rowData.transport_type, rowData.origin, rowData.destination)}}
         rightIcon={{'name':'remove-circle', 'color': 'red'}}
         onPressRightIcon={() => this.deleteTrip(rowData.trip_id)}
         hideChevron={!this.state.editing}
