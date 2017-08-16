@@ -25,6 +25,7 @@ export default class TouchableText extends Component {
       <View>
         <TouchableHighlight
           underlayColor="transparent"
+          activeOpacity={0.6}
           style={buttonStyle}
           onPress={onPress}
         >
