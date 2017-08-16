@@ -12,6 +12,7 @@ exports[`displays error with try again option 1`] = `
           Object {
             "flexDirection": "row",
             "justifyContent": "center",
+            "paddingLeft": 10,
           },
         ]
       }

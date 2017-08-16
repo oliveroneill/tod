@@ -22,7 +22,7 @@ class LoadingScreen extends Component {
       <View>
         {errored ?
           <View>
-            <View style={[styles.topOfScreen, {flexDirection: 'row', justifyContent:'center'}]}>
+            <View style={[styles.topOfScreen, {paddingLeft:10, flexDirection: 'row', justifyContent:'center'}]}>
               <Text>{errorMessage}</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent:'center'}}>
