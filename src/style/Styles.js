@@ -37,7 +37,12 @@ export default StyleSheet.create({
     backgroundColor: '#bdc6cf',
     color: '#86939e',
     fontSize: 13,
-    height: 30
+    height: 30,
+    paddingTop: 4.5,
+    paddingBottom: 4.5,
+    marginTop: 7.5,
+    marginLeft: 8,
+    marginRight: 8,
   },
   icon: {
     color: '#bdc6cf',

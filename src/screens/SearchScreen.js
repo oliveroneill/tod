@@ -25,7 +25,6 @@ import LoadingScreen from '../components/LoadingScreen.js';
 import TtgApi from '../utils/TtgApi.js';
 import Utils from '../utils/Utils.js'
 
-var deviceWidth = Dimensions.get('window').width;
 var deviceHeight = Dimensions.get('window').height;
 const transportModes = Utils.getTransportModes();
 
@@ -40,7 +39,7 @@ class SearchScreen extends Component {
     const api = params.api;
     const loggedIn = params.loggedIn || false;
     return {
-      title: 'TTG',
+      title: 'tod',
       headerBackTitle:'Back',
       headerRight: (
         <View style={{paddingRight: 10}}>
@@ -63,17 +62,14 @@ class SearchScreen extends Component {
     transportIndex: 0,
     routeName: "",
     // destination
-    destLat: -1,
-    destLng: -1,
+    destLat: undefined,
+    destLng: undefined,
     destinationName: "",
 
-    // AnimatedPicker offset
-    offSet: new Animated.Value(deviceHeight),
-    // picker values
     modal: false,
-    pickerType: "date",
+    pickerType: "options",
     options: [],
-    onOptionChange: null,
+    onOptionChange: function(){},
     currentValue: null,
     minDate: new Date(),
     maxDate: moment().add(3, 'months').toDate(),
@@ -133,6 +129,7 @@ class SearchScreen extends Component {
   }
 
   getRoutes() {
+    if (this.state.destLat === undefined) return;
     this.setState({status: "Loading"});
     let origin = {lat:this.lat,lng:this.lng};
     let dest = {lat:this.state.destLat,lng:this.state.destLng};
@@ -201,7 +198,10 @@ class SearchScreen extends Component {
       this.setupCurrentLocation();
     }.bind(this),
     function(notification){
-      alert(notification.alert);
+      if (notification.alert !== undefined)
+        alert(notification.alert);
+      else
+        alert(notification.notification.body);
     },
     function(){
       this.setState({'errored': true})
@@ -250,7 +250,9 @@ class SearchScreen extends Component {
             <View style={styles.searchBarContainer}>
               <TextInput
                 style={styles.searchBarInput}
+                underlineColorAndroid='transparent'
                 placeholder='Destination'
+                placeholderTextColor='#86939e'
                 onFocus={function() {
                   Keyboard.dismiss();
                   navigate('SearchLocation', {
@@ -314,18 +316,16 @@ class SearchScreen extends Component {
               onPress={this.openInMaps.bind(this)}
               title="View In Google Maps"
             />
-            { this.state.modal ?
-              <AnimatedPicker
-                closeModal={() => this.setState({ modal: false })}
-                offSet={this.state.offSet}
-                changeOption={this.state.onOptionChange}
-                options={this.state.options}
-                currentOption={this.state.currentValue}
-                type={this.state.pickerType}
-                minDate={this.state.minDate}
-                maxDate={this.state.maxDate}
-              />
-            : null }
+            <AnimatedPicker
+              isVisible={this.state.modal}
+              closeModal={() => this.setState({ modal: false })}
+              onOptionChange={this.state.onOptionChange}
+              options={this.state.options}
+              currentOption={this.state.currentValue}
+              type={this.state.pickerType}
+              minDate={this.state.minDate}
+              maxDate={this.state.maxDate}
+            />
           </View>
         }
       </View>

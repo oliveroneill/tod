@@ -8,7 +8,10 @@ import {
   Picker,
   Animated,
   TouchableHighlight,
+  Platform,
 } from 'react-native';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import Modal from 'react-native-modal';
 
 var deviceWidth = Dimensions.get('window').width;
 var deviceHeight = Dimensions.get('window').height;
@@ -18,57 +21,51 @@ const styles = StyleSheet.create({
   closeButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    borderBottomColor: '#e2e2e2',
-    borderBottomWidth:1,
-    backgroundColor: '#ffffff'
-  },
-  closeButtonContainerBordered: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
     borderTopColor: '#e2e2e2',
     borderTopWidth: 1,
+    borderBottomWidth:1,
     borderBottomColor: '#e2e2e2',
-    borderBottomWidth:1
-  },
-  closeButton: {
-    paddingLeft: 10,
-    paddingRight:10,
+    backgroundColor: '#ffffff',
     paddingTop:10,
     paddingBottom:10
   },
+  closeButton: {
+    paddingRight:10,
+  },
   closeButtonText: {
     color: '#027afe'
-  },
-  modalDatePicker: {
-    position:'absolute',
-    bottom: -1,
-    right:-1,
-    width:deviceWidth,
-    backgroundColor:'#FFFFFF'
-  },
+  }
 });
 class AnimatedPicker extends Component {
-  componentDidMount() {
-     Animated.timing(this.props.offSet, {
-        duration: 300,
-        toValue: 50
-      }).start()
+  usingAndroidDatePicker() {
+    return Platform.OS === 'android' && this.props.type === "date" && this.props.isVisible;
   }
-
-  closeModal() {
-   Animated.timing(this.props.offSet, {
-        duration: 300,
-        toValue: deviceHeight
-      }).start(this.props.closeModal);
-  }
-
   render() {
+    var defaultDate = new Date();
+    if (this.props.type === 'date')
+      defaultDate = this.props.currentOption;
     return (
-      <Animated.View
-        style={[{transform: [{translateY: this.props.offSet}]}, styles.modalDatePicker]}
-      >
-          <View style={styles.closeButtonContainerBordered}>
-            <TouchableHighlight onPress={ this.closeModal.bind(this) } underlayColor="transparent" style={styles.closeButton}>
+      <View>
+        <DateTimePicker
+          isVisible={this.usingAndroidDatePicker()}
+          onConfirm={this.props.onOptionChange}
+          onCancel={this.props.closeModal}
+          mode='datetime'
+          date={defaultDate}
+          minimumDate={this.props.minDate}
+          maximumDate={this.props.maxDate}
+        />
+        <Modal
+          isVisible={this.props.isVisible && !this.usingAndroidDatePicker()}
+          style={{justifyContent:'flex-end', margin:0}}
+          backdropOpacity={0}
+        >
+          <View style={styles.closeButtonContainer}>
+            <TouchableHighlight
+              onPress={ this.props.closeModal}
+              underlayColor="transparent"
+              style={styles.closeButton}
+            >
               <Text style={styles.closeButtonText}>Done</Text>
             </TouchableHighlight>
           </View>
@@ -78,12 +75,13 @@ class AnimatedPicker extends Component {
               minimumDate={this.props.minDate}
               maximumDate={this.props.maxDate}
               mode="datetime"
-              onDateChange={(date) => this.props.changeOption(date)}
+              onDateChange={this.props.onOptionChange}
             />
           :
             <Picker
+              style={{backgroundColor:'#ffffff'}}
               selectedValue={this.props.currentOption}
-              onValueChange={(option) => this.props.changeOption(option)}>
+              onValueChange={this.props.onOptionChange}>
               {Array.isArray(this.props.options) ?
                 this.props.options.map((option) => (
                   <PickerItem
@@ -103,7 +101,8 @@ class AnimatedPicker extends Component {
               }
             </Picker>
           }
-      </Animated.View>
+        </Modal>
+      </View>
     )
   }
 }

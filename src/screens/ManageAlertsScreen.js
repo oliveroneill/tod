@@ -29,13 +29,13 @@ class ManageAlertsScreen extends Component {
     return {
       title: 'Manage Trips',
       headerRight: (
-        <Button
-          title={editing ? "Done" : "Edit"}
+        <TouchableText
+          style={{paddingRight: 10}}
           onPress={() => {
             setParams({editing: !editing})
             onEdit();
           }}
-        />
+        >{editing ? "Done" : "Edit"}</TouchableText>
       ),
     };
   };
@@ -63,7 +63,6 @@ class ManageAlertsScreen extends Component {
     })
   }
   enableDisableTrip(id) {
-    console.log(id);
     this.setState({loading: true});
     this.api.enableDisableTrip(id)
     .then(() => {
@@ -134,7 +133,7 @@ class ManageAlertsScreen extends Component {
           />
         :
           <View style={styles.container}>
-            <Text style={{paddingLeft: 10}}>Trips: </Text>
+            <Text style={{paddingLeft: 10, paddingTop:10}}>Trips: </Text>
             <List>
               <ListView
                 enableEmptySections

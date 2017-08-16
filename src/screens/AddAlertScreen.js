@@ -31,10 +31,10 @@ class AddAlertScreen extends Component {
     return {
       title: 'Schedule Trip',
       headerRight: (
-        <Button
-          title={"Set Alert"}
+        <TouchableText
+          style={{paddingRight: 10}}
           onPress={scheduleTrip}
-        />
+        >Set Alert</TouchableText>
       ),
     };
   };

@@ -38,6 +38,8 @@
     "react-native-config": "^0.6.0",
     "react-native-elements": "^0.13.0",
     "react-native-google-places-autocomplete": "^1.2.12",
+    "react-native-modal": "^2.5.0",
+    "react-native-modal-datetime-picker": "^4.9.0",
     "react-native-push-notification": "^3.0.0",
     "react-native-unique-id": "^1.0.4",
     "react-native-vector-icons": "^4.2.0",
