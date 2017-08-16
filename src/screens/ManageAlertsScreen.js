@@ -30,7 +30,7 @@ class ManageAlertsScreen extends Component {
       title: 'Manage Trips',
       headerRight: (
         <TouchableText
-          style={{paddingRight: 10}}
+          style={styles.navigationHeaderItem}
           onPress={() => {
             setParams({editing: !editing})
             onEdit();

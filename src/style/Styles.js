@@ -65,20 +65,10 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: STATUSBAR_HEIGHT,
   },
-  // header: {
-  //   flexDirection: 'row',
-  // },
-  header_item: {
-    flex: 1,
-    paddingLeft: 10,
-    paddingRight:10,
-    paddingTop:10,
-    paddingBottom:10
-  },
-  header_button: {
-    flexDirection: 'row'
-  },
-  text_right: {
-    textAlign: 'right'
-  },
+  navigationHeaderItem: {
+    paddingRight: 10,
+    paddingLeft:20,
+    paddingBottom:20,
+    paddingTop:20
+  }
 });

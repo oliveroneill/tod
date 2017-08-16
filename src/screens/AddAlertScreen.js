@@ -32,7 +32,7 @@ class AddAlertScreen extends Component {
       title: 'Schedule Trip',
       headerRight: (
         <TouchableText
-          style={{paddingRight: 10}}
+          style={styles.navigationHeaderItem}
           onPress={scheduleTrip}
         >Set Alert</TouchableText>
       ),

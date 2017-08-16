@@ -42,11 +42,14 @@ class SearchScreen extends Component {
       title: 'tod',
       headerBackTitle:'Back',
       headerRight: (
-        <View style={{paddingRight: 10}}>
+        <View>
           { loggedIn ?
             <Icon
+              style={styles.navigationHeaderItem}
               name='notifications-none'
-              color='#00aced'
+              color='#2f93fe'
+              activeOpacity={0.6}
+              underlayColor="transparent"
               onPress={() => navigate('ManageAlerts', {api: api})}
             />
             :
@@ -272,6 +275,7 @@ class SearchScreen extends Component {
               <TouchableHighlight
                 style={styles.inputOptions}
                 underlayColor="transparent"
+                activeOpacity={0.6}
                 onPress={ () => this.setState({
                   modal: true,
                   pickerType:"date",
@@ -287,6 +291,7 @@ class SearchScreen extends Component {
               <TouchableHighlight
                 style={styles.inputOptions}
                 underlayColor="transparent"
+                activeOpacity={0.6}
                 onPress={ () => this.setState({
                   modal: true,
                   pickerType:"options",
