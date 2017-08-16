@@ -13,6 +13,8 @@ import {
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Modal from 'react-native-modal';
 
+import TouchableText from './TouchableText.js';
+
 var deviceWidth = Dimensions.get('window').width;
 var deviceHeight = Dimensions.get('window').height;
 var PickerItem = Picker.Item;
@@ -25,15 +27,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth:1,
     borderBottomColor: '#e2e2e2',
-    backgroundColor: '#ffffff',
-    paddingTop:10,
-    paddingBottom:10
-  },
-  closeButton: {
-    paddingRight:10,
-  },
-  closeButtonText: {
-    color: '#027afe'
+    backgroundColor: '#ffffff'
   }
 });
 class AnimatedPicker extends Component {
@@ -61,13 +55,12 @@ class AnimatedPicker extends Component {
           backdropOpacity={0}
         >
           <View style={styles.closeButtonContainer}>
-            <TouchableHighlight
-              onPress={ this.props.closeModal}
+            <TouchableText
+              onPress={this.props.closeModal}
               underlayColor="transparent"
-              style={styles.closeButton}
             >
-              <Text style={styles.closeButtonText}>Done</Text>
-            </TouchableHighlight>
+              Done
+            </TouchableText>
           </View>
           {this.props.type === "date" ?
             <DatePickerIOS
