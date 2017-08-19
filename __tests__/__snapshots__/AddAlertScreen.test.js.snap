@@ -113,7 +113,7 @@ exports[`displays route correctly 1`] = `
                 allowFontScaling={true}
                 disabled={false}
                 ellipsizeMode="tail"
-                numberOfLines={1}
+                numberOfLines={3}
                 style={
                   Array [
                     Object {},

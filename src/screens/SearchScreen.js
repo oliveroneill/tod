@@ -188,6 +188,7 @@ class SearchScreen extends Component {
         subtitle={subtitle}
         underlayColor='#e1e1e1'
         onPress={() => {navigate('AddAlert', props)}}
+        subtitleNumberOfLines={3}
       />
     );
   }

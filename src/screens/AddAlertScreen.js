@@ -90,6 +90,7 @@ class AddAlertScreen extends Component {
                 title={this.props.navigation.state.params.route.name}
                 leftIcon={{name:this.props.navigation.state.params.transportIcon}}
                 subtitle={this.props.navigation.state.params.subtitle}
+                subtitleNumberOfLines={3}
               />
             </List>
             <Text style={{paddingLeft:10, fontSize:15, fontWeight:'bold'}}>Repeat:</Text>
