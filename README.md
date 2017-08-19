@@ -37,6 +37,7 @@ Runs your app in development mode.
 #### `npm test`
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
+There are warnings for each of these tests caused by dependencies. These can be ignored until the dependencies update from deprecated `PropTypes` usage. There is also a warning regarding the `Switch` component. I believe this is caused by calling `renderCell` directly where there is no state. This warning is mentioned in [TODO](#todo).
 
 #### `npm run ios`
 
@@ -57,4 +58,6 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 2. Add the Genymotion tools directory to your path (instructions for [Mac](http://osxdaily.com/2014/08/14/add-new-path-to-path-command-line/), [Linux](http://www.computerhope.com/issues/ch001647.htm), and [Windows](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/)).
 3. Make sure that you can run adb from your terminal.
 
-
+## TODO
+- Unit test API usage
+- Figure out how to decouple route data from views so that we can easily snapshot test (this should fix `Switch` warning mentioned in `npm test` section above)
