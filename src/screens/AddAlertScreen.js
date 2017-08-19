@@ -61,7 +61,7 @@ class AddAlertScreen extends Component {
       origin, dest, route, transport, inputArrival, inputArrivalString, waitingWindow, repeats
     )
     .then(function() {
-      alert("Success!");
+      alert("Trip successfully scheduled! Please note this is still a beta project");
       this.setState({loading:false});
       this.props.navigation.goBack();
     }.bind(this))
