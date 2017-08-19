@@ -69,6 +69,7 @@ class AnimatedPicker extends Component {
               maximumDate={this.props.maxDate}
               mode="datetime"
               onDateChange={this.props.onOptionChange}
+              style={{'backgroundColor': '#ffffff'}}
             />
           :
             <Picker
