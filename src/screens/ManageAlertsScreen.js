@@ -43,7 +43,7 @@ class ManageAlertsScreen extends Component {
     ds: ds,
     trips: [],
     editing: false,
-    loading: false,
+    loading: true,
     errored: false
   };
   getTrips() {
