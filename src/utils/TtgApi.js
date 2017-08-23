@@ -23,7 +23,7 @@ class TtgApi {
     );
   }
 
-  scheduleTrip(origin, dest, route, transport, inputTs, inputDateString, waitingWindow, repeats) {
+  scheduleTrip(origin, dest, route, transport, inputTs, inputDateString, waitingWindowMs, repeats) {
     let url = API_URL+"/api/schedule-trip";
     let body = {
       "user": {"user_id":this._id},
@@ -39,7 +39,7 @@ class TtgApi {
         'local_date_string': inputDateString
       },
       "route": route,
-      "waiting_window": waitingWindow,
+      "waiting_window_ms": waitingWindowMs,
       "repeat_days": repeats
     }
     return new Promise(function(resolve, reject) {

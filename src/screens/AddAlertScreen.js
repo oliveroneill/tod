@@ -54,7 +54,7 @@ class AddAlertScreen extends Component {
     let inputArrivalString = params.inputArrivalDateString;
     let origin = params.origin;
     let dest = params.dest;
-    let waitingWindow = params.waitingWindow;
+    let waitingWindow = params.waitingWindowMs;
     let repeats = this.state.enabled;
     this.setState({loading: true})
     this.api.scheduleTrip(

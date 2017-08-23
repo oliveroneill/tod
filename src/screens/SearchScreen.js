@@ -159,14 +159,15 @@ class SearchScreen extends Component {
   renderCell(rowData, sectionID) {
     const { navigate } = this.props.navigation;
     let arrival = moment.unix(rowData.arrival_time / 1000).format('h:mm a');
+    let waitingWindowMs = this.state.waitingWindow * 60 * 1000;
     // subtract the waiting window
-    let departure_ts = rowData.departure_time - this.state.waitingWindow * 60 * 1000;
+    let departure_ts = rowData.departure_time - waitingWindowMs;
     let departure = moment.unix(departure_ts / 1000).format('h:mm a');
     let description = rowData.description;
     if (description.length > 0) {
       description += " - ";
     }
-    let subtitle = description+"Leave here at "+departure+" and arrive at "+arrival;
+    let subtitle = description+"Alert at "+departure+" and arrive at "+arrival;
     let dateString = moment(this.state.date).tz(moment.tz.guess()).format("YYYY-MM-DDTHH:mm:ssZ z");
     let props = {
       origin: {lat:this.lat, lng:this.lng},
@@ -178,7 +179,7 @@ class SearchScreen extends Component {
       subtitle:subtitle,
       transportIcon:transportModes[this.state.transportIndex].icon,
       transport:transportModes[this.state.transportIndex].name,
-      waitingWindow: this.state.waitingWindow,
+      waitingWindowMs: waitingWindowMs,
       api: this.api,
     };
     return (

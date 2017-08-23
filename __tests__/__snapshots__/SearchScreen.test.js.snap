@@ -132,7 +132,7 @@ exports[`displays routes correctly 1`] = `
             ]
           }
         >
-          Take x avenue - Leave here at 5:31 pm and arrive at 5:37 pm
+          Take x avenue - Alert at 5:31 pm and arrive at 5:37 pm
         </Text>
       </View>
     </View>
