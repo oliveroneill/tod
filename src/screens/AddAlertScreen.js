@@ -7,6 +7,7 @@ import {
   Button,
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements'
+import PropTypes from 'prop-types';
 
 import TtgApi from '../utils/TtgApi.js';
 import LoadingScreen from '../components/LoadingScreen.js';
@@ -48,17 +49,20 @@ class AddAlertScreen extends Component {
   }
   scheduleTrip() {
     let params = this.props.navigation.state.params;
-    let route = params.route;
-    let transport = params.transport;
-    let inputArrival = params.inputArrival;
-    let inputArrivalString = params.inputArrivalDateString;
-    let origin = params.origin;
-    let dest = params.dest;
-    let waitingWindow = params.waitingWindowMs;
-    let repeats = this.state.enabled;
+    let {
+      route,
+      transport,
+      inputArrival,
+      inputArrivalDateString,
+      origin,
+      dest,
+      waitingWindowMs,
+      enabled
+    } = params;
     this.setState({loading: true})
     this.api.scheduleTrip(
-      origin, dest, route, transport, inputArrival, inputArrivalString, waitingWindow, repeats
+      origin, dest, route, transport, inputArrival,
+      inputArrivalDateString, waitingWindow, enabled
     )
     .then(function() {
       alert("Trip successfully scheduled! Please note this is still a beta project");
@@ -76,6 +80,7 @@ class AddAlertScreen extends Component {
     setParams({scheduleTrip: this.scheduleTrip.bind(this)})
   }
   render() {
+    let {route, transportIcon, subtitle} = this.props.navigation.state.params;
     return (
       <View style={styles.screen}>
         { this.state.loading ?
@@ -87,9 +92,9 @@ class AddAlertScreen extends Component {
             <List containerStyle={{marginBottom: 20}}>
               <ListItem
                 hideChevron={true}
-                title={this.props.navigation.state.params.route.name}
-                leftIcon={{name:this.props.navigation.state.params.transportIcon}}
-                subtitle={this.props.navigation.state.params.subtitle}
+                title={route.name}
+                leftIcon={{name:transportIcon}}
+                subtitle={subtitle}
                 subtitleNumberOfLines={3}
               />
             </List>
@@ -114,6 +119,10 @@ class AddAlertScreen extends Component {
       </View>
     )
   }
+}
+
+AddAlertScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default AddAlertScreen;

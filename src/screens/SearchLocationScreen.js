@@ -6,13 +6,14 @@ import {
 } from 'react-native';
 
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import PropTypes from 'prop-types';
 
 import TouchableText from '../components/TouchableText.js';
 import styles from '../style/Styles.js'
 
 const {height, width} = Dimensions.get('window');
 
-export default class GoogleMapsPopup extends Component {
+class SearchLocationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Enter Destination',
@@ -53,3 +54,9 @@ export default class GoogleMapsPopup extends Component {
     )
   }
 }
+
+SearchLocationScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+}
+
+export default SearchLocationScreen;

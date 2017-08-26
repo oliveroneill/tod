@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import moment from 'moment-timezone';
 import { List, ListItem, Icon } from 'react-native-elements'
+import PropTypes from 'prop-types';
 
 import styles from '../style/Styles.js'
 import IconRow from '../components/IconRow.js';
@@ -65,17 +66,14 @@ class SearchScreen extends Component {
     transportIndex: 0,
     routeName: "",
     // destination
-    destLat: undefined,
-    destLng: undefined,
-    destinationName: "",
-
+    destination: {
+      name:""
+    },
     modal: false,
     pickerType: "options",
     options: [],
     onOptionChange: function(){},
     currentValue: null,
-    minDate: new Date(),
-    maxDate: moment().add(3, 'months').toDate(),
     routes: [],
     ds: ds,
     loading:true,
@@ -118,9 +116,11 @@ class SearchScreen extends Component {
 
   setDestination(name, lat, lng) {
     this.setState({
-      destLat:lat,
-      destLng:lng,
-      destinationName: name,
+      destination: {
+        lat: lat,
+        lng: lng,
+        name: name
+      }
     }, this.getRoutes.bind(this))
   }
 
@@ -132,10 +132,10 @@ class SearchScreen extends Component {
   }
 
   getRoutes() {
-    if (this.state.destLat === undefined) return;
+    if (this.state.destination.lat === undefined) return;
     this.setState({status: "Loading"});
     let origin = {lat:this.lat,lng:this.lng};
-    let dest = {lat:this.state.destLat,lng:this.state.destLng};
+    let dest = this.state.destination;
     let arrival = Math.ceil(this.state.date.valueOf());
     let transport = transportModes[this.state.transportIndex].name;
     this.api.getRoutes(origin, dest, transport, arrival, this.state.routeName)
@@ -152,7 +152,7 @@ class SearchScreen extends Component {
     Utils.openInMaps(moment(this.state.date),
       transportModes[this.state.transportIndex].name,
       {lat:this.lat, lng:this.lng},
-      {lat:this.state.destLat, lng:this.state.destLng}
+      this.state.destination
     );
   }
 
@@ -171,7 +171,7 @@ class SearchScreen extends Component {
     let dateString = moment(this.state.date).tz(moment.tz.guess()).format("YYYY-MM-DDTHH:mm:ssZ z");
     let props = {
       origin: {lat:this.lat, lng:this.lng},
-      dest: {lat:this.state.destLat,lng:this.state.destLng},
+      dest: this.state.destination,
       route:rowData,
       inputArrival:Math.ceil(this.state.date.valueOf()),
       inputArrivalDateString:dateString,
@@ -261,11 +261,11 @@ class SearchScreen extends Component {
                 onFocus={function() {
                   Keyboard.dismiss();
                   navigate('SearchLocation', {
-                    destinationName: this.state.destinationName,
+                    destinationName: this.state.destination.name,
                     onPress:this.setDestination.bind(this)
                   })
                 }.bind(this)}
-                value={this.state.destinationName}
+                value={this.state.destination.name}
               />
             </View>
             <IconRow
@@ -325,19 +325,23 @@ class SearchScreen extends Component {
             />
             <AnimatedPicker
               isVisible={this.state.modal}
-              closeModal={() => this.setState({ modal: false })}
+              onClose={() => this.setState({ modal: false })}
               onOptionChange={this.state.onOptionChange}
               options={this.state.options}
               currentOption={this.state.currentValue}
               type={this.state.pickerType}
-              minDate={this.state.minDate}
-              maxDate={this.state.maxDate}
+              minDate={new Date()}
+              maxDate={moment().add(3, 'months').toDate()}
             />
           </View>
         }
       </View>
     )
   }
+}
+
+SearchScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default SearchScreen;

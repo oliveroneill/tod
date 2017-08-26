@@ -5,6 +5,7 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   button: {
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class TouchableText extends Component {
+class TouchableText extends Component {
   render () {
     let {onPress, children, buttonStyle=styles.button, textStyle=styles.buttonText} = this.props;
     return (
@@ -35,3 +36,17 @@ export default class TouchableText extends Component {
     )
   }
 }
+
+TouchableText.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
+  buttonStyle: View.propTypes.style,
+  textStyle: Text.propTypes.style
+}
+
+TouchableText.defaultProps = {
+  buttonStyle: styles.button,
+  textStyle: styles.buttonText
+}
+
+export default TouchableText;

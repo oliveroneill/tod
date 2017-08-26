@@ -4,6 +4,7 @@ import {
   View
 } from 'react-native';
 import { Icon } from 'react-native-elements'
+import PropTypes from 'prop-types';
 
 class IconRow extends Component {
   render() {
@@ -24,6 +25,12 @@ class IconRow extends Component {
       </View>
     )
   }
+}
+
+IconRow.propTypes = {
+  options: PropTypes.array.isRequired,
+  current: PropTypes.number.isRequired,
+  onPress: PropTypes.func
 }
 
 const styles = StyleSheet.create({

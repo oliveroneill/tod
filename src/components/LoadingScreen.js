@@ -7,6 +7,7 @@ import {
   Text,
   Button,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 const styles = StyleSheet.create({
@@ -47,6 +48,19 @@ class LoadingScreen extends Component {
       </View>
     )
   }
+}
+
+LoadingScreen.propTypes = {
+  errored: PropTypes.bool,
+  loadingMessage: PropTypes.string,
+  errorMessage: PropTypes.string,
+  retry: PropTypes.func
+}
+
+LoadingScreen.defaultProps = {
+  errored: false,
+  loadingMessage: "Loading...",
+  errorMessage: "Something went wrong."
 }
 
 export default LoadingScreen;

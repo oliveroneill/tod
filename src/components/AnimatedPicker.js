@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Modal from 'react-native-modal';
+import PropTypes from 'prop-types';
 
 import TouchableText from './TouchableText.js';
 
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   }
 });
+
 class AnimatedPicker extends Component {
   usingAndroidDatePicker() {
     return Platform.OS === 'android' && this.props.type === "date" && this.props.isVisible;
@@ -43,7 +45,7 @@ class AnimatedPicker extends Component {
         <DateTimePicker
           isVisible={this.usingAndroidDatePicker()}
           onConfirm={this.props.onOptionChange}
-          onCancel={this.props.closeModal}
+          onCancel={this.props.onClose}
           mode='datetime'
           date={defaultDate}
           minimumDate={this.props.minDate}
@@ -56,8 +58,7 @@ class AnimatedPicker extends Component {
         >
           <View style={styles.closeButtonContainer}>
             <TouchableText
-              onPress={this.props.closeModal}
-              underlayColor="transparent"
+              onPress={this.props.onClose}
             >
               Done
             </TouchableText>
@@ -99,6 +100,24 @@ class AnimatedPicker extends Component {
       </View>
     )
   }
+}
+
+AnimatedPicker.propTypes = {
+  type: PropTypes.string.isRequired,
+  currentOption: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(Date)
+  ]),
+  onClose: PropTypes.func.isRequired,
+  onOptionChange: PropTypes.func.isRequired,
+  options: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  isVisible: PropTypes.bool.isRequired,
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date)
 }
 
 export default AnimatedPicker;

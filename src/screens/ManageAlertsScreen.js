@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import TouchableText from '../components/TouchableText.js';
 import styles from '../style/Styles.js'
@@ -146,6 +147,10 @@ class ManageAlertsScreen extends Component {
       </View>
     )
   }
+}
+
+ManageAlertsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default ManageAlertsScreen;
