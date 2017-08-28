@@ -47,6 +47,16 @@ class ManageAlertsScreen extends Component {
     loading: true,
     errored: false
   };
+  constructor(props) {
+    super(props);
+    // bind functions
+    this.getTrips = this.getTrips.bind(this);
+    this.setTrips = this.setTrips.bind(this);
+    this.enableDisableTrip = this.enableDisableTrip.bind(this);
+    this.deleteTrip = this.deleteTrip.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.renderCell = this.renderCell.bind(this);
+  }
   getTrips() {
     this.api.getScheduledTrips()
     .then((trips) => {
@@ -83,7 +93,7 @@ class ManageAlertsScreen extends Component {
   componentWillMount() {
     this.api = this.props.navigation.state.params.api;
     const { setParams } = this.props.navigation;
-    setParams({onEdit: this.onEdit.bind(this)})
+    setParams({onEdit: this.onEdit})
   }
   renderCell(rowData, sectionID) {
     let arrivalDate = moment.unix(rowData.route.arrival_time / 1000)
@@ -130,7 +140,7 @@ class ManageAlertsScreen extends Component {
             loadingMessage="Loading Trips..."
             errored={this.state.errored}
             errorMessage="Something went wrong. Please ensure you have an internet connection."
-            retry={this.getTrips.bind(this)}
+            retry={this.getTrips}
           />
         :
           <View style={styles.container}>
@@ -138,7 +148,7 @@ class ManageAlertsScreen extends Component {
             <List>
               <ListView
                 enableEmptySections
-                renderRow={this.renderCell.bind(this)}
+                renderRow={this.renderCell}
                 dataSource={this.state.ds}
               />
             </List>

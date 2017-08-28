@@ -5,6 +5,9 @@ import Config from 'react-native-config'
 
 const API_URL = Config.API_URL;
 
+/**
+ * Interact with the Tod server for scheduling trips and searching routes
+ */
 class TodAPI {
   /**
    * @param setup - optional argument for custom app setup, mainly used for
@@ -18,6 +21,10 @@ class TodAPI {
     this._id = null;
   }
 
+  /**
+   * Uses AppSetup class to register for notifications and retrieve unique
+   * id
+   */
   setup(onRegister, onNotification, onError) {
     this._setup.setupNotifications(
       function(id, token) {
@@ -31,6 +38,33 @@ class TodAPI {
       onNotification,
       onError
     );
+  }
+
+  /**
+   * Registers a user with a notification token. This is required since
+   * notification tokens change. So we must update it with the user id
+   */
+  sendToken(userId, token) {
+    let url = API_URL+"/api/register-user";
+    let body = {
+      "user_id": userId,
+      "notification_token": token,
+      "device_os": Platform.OS
+    };
+    return new Promise(function(resolve, reject) {
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(body)
+      })
+      .then(TodAPI._handleResponse)
+      .then(function(response) {
+        resolve(response)
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+    }.bind(this));
   }
 
   scheduleTrip(origin, dest, route, transport, inputTs, inputDateString, waitingWindowMs, repeats) {
@@ -115,29 +149,6 @@ class TodAPI {
     }.bind(this));
   }
 
-  sendToken(userId, token) {
-    let url = API_URL+"/api/register-user";
-    let body = {
-      "user_id": userId,
-      "notification_token": token,
-      "device_os": Platform.OS
-    };
-    return new Promise(function(resolve, reject) {
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
-      .then(TodAPI._handleResponse)
-      .then(function(response) {
-        resolve(response)
-      })
-      .catch((error) => {
-        console.error(error);
-        reject(error);
-      });
-    }.bind(this));
-  }
-
   enableDisableTrip(id) {
     let url = API_URL+"/api/enable-disable-trip";
     return new Promise(function(resolve, reject) {
@@ -180,6 +191,10 @@ class TodAPI {
     }.bind(this));
   }
 
+  /**
+   * Each API call should check that we've initialised with a
+   * unique identifier
+   */
   _rejectWhenNotSetup(reject) {
     if (this._id === null) {
       reject("Call setup() before making API requests")
@@ -188,6 +203,9 @@ class TodAPI {
     return false;
   }
 
+  /**
+   * Will throw an error if the response is invalid
+   */
   static _handleResponse(response) {
     if (TodAPI._isValidResponse(response)) {
       return response;

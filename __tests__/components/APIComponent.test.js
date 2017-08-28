@@ -15,6 +15,7 @@ describe('APIComponent', () => {
       }
     };
   })
+
   it('shows spinner while loading', () => {
     let api = {};
     api.setup = jest.fn();

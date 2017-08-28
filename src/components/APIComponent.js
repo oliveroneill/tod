@@ -11,20 +11,25 @@ class APIComponent extends Component {
   state={
     errored: false,
     loading: true
+  };
+  constructor(props) {
+    super(props);
+    // bind functions
+    this.initialise = this.initialise.bind(this);
+    this.setupCurrentLocation = this.setupCurrentLocation.bind(this);
   }
 
   initialise() {
     this.setState({'errored': false});
     this.setState({'loading': true});
     let { api, onNotification } = this.props;
-    api.setup(function(){
-      // get current location
-      this.setupCurrentLocation();
-    }.bind(this),
-    onNotification,
-    function(){
-      this.setState({'errored': true})
-    }.bind(this));
+    api.setup(
+      this.setupCurrentLocation,
+      onNotification,
+      function(){
+        this.setState({'errored': true})
+      }.bind(this)
+    );
   }
 
   setupCurrentLocation() {
@@ -56,7 +61,7 @@ class APIComponent extends Component {
           errored={this.state.errored}
           loadingMessage="Logging in..."
           errorMessage="Unfortunately we couldn't log you in. Please ensure you have an internet connection."
-          retry={this.initialise.bind(this)}
+          retry={this.initialise}
         />
       )
     }

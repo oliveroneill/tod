@@ -2,6 +2,10 @@ import {FCMServerKey} from './FCMConfig.js';
 import uniqueId from 'react-native-unique-id';
 import PushNotification from 'react-native-push-notification';
 
+/**
+ * Will register for notification and retrieve a unique id for this device
+ * This is done asynchronously
+ */
 class AppSetup {
   constructor() {
     this._id = null;
@@ -23,6 +27,17 @@ class AppSetup {
     }.bind(this));
   }
 
+  /**
+   * Call this on app start to register for notifications
+   * This also retrieves a unique identifier for the device
+   *
+   * @param onToken(id, token) - id is a unique id, token is the notification
+   * token that should be used to notify this device
+   * notification
+   * @param onNotification is based on react-native-push-notification's
+   * callback
+   * @param onError - called if retrieving a unique id fails
+   */
   setupNotifications(onToken, onNotification, onError) {
     PushNotification.configure({
       onRegister: function(token) {
@@ -32,9 +47,7 @@ class AppSetup {
         })
         .catch(error => onError(error));
       }.bind(this),
-      onNotification: function(notification) {
-        onNotification(notification);
-      },
+      onNotification: onNotification,
       senderID: FCMServerKey,
       permissions: {
         alert: true,

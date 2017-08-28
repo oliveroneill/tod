@@ -6,6 +6,9 @@ import {
 import { Icon } from 'react-native-elements'
 import PropTypes from 'prop-types';
 
+/**
+ * Displays a list of icons in a row
+ */
 class IconRow extends Component {
   render() {
     return (

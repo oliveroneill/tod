@@ -31,12 +31,18 @@ const styles = StyleSheet.create({
   }
 });
 
+/**
+ * AnimatedPicker can display a set of option choice or date options
+ * Use the type prop to specify either "date" or "options"
+ * The options param can be an Object of key values or an array
+ */
 class AnimatedPicker extends Component {
   render() {
     var defaultDate = new Date();
     let usingAndroid = Platform.OS === 'android';
     let isDatePicker = this.props.type === "date";
     let isVisible = this.props.isVisible;
+    // check if we need to show specific Android date picker
     let usingAndroidDatePicker = usingAndroid && isDatePicker && isVisible;
     if (isDatePicker)
       defaultDate = this.props.currentOption;

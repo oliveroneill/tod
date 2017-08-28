@@ -37,7 +37,7 @@ Runs your app in development mode.
 #### `npm test`
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
-There are warnings for each of these tests caused by dependencies. These can be ignored until the dependencies update from deprecated `PropTypes` usage. There is also a warning regarding the `Switch` component. I believe this is caused by calling `renderCell` directly where there is no state. This warning is mentioned in [TODO](#todo).
+There are warnings for each of these tests caused by dependencies as well as type checking that can't be avoided via mocks. These can be ignored until the dependencies update from deprecated `PropTypes` usage. There is also a warning regarding the `Switch` component. I believe this is caused by calling `renderCell` directly where there is no state. This warning is mentioned in [TODO](#todo).
 
 #### `npm run ios`
 

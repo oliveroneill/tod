@@ -31,6 +31,11 @@ class Utils {
     }
     return waitingOptions;
   }
+
+  /**
+   * Constructs a url that will show the same query within Google Maps
+   * This doesn't seem to work completely
+   */
   static openInMaps(date, transportName, origin, dest) {
     let dateStr = date.format("MM/DD/YYYY");
     let timeStr = date.format("HH:mm");

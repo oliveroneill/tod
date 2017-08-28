@@ -39,6 +39,7 @@ class SearchScreen extends Component {
     const params = state.params || {};
     const api = params.api;
     const loggedIn = params.loggedIn || false;
+    // show a button unless we're not logged in yet
     return {
       title: 'tod',
       headerBackTitle:'Back',
@@ -54,41 +55,60 @@ class SearchScreen extends Component {
               onPress={() => navigate('ManageAlerts', {api: api})}
             />
             :
-            <View></View>
+            null
           }
         </View>
       ),
     };
   };
   state = {
+    // query input
     date: new Date(),
     waitingWindow: 5,
     transportIndex: 0,
     routeName: "",
-    // destination
     destination: {
       name:""
     },
+    // search results
+    routes: [],
+    ds: ds,
+    // modal picker info
     modal: false,
     pickerType: "options",
     options: [],
     onOptionChange: function(){},
-    currentValue: null,
-    routes: [],
-    ds: ds
+    currentValue: null
   };
-
+  constructor(props) {
+    super(props);
+    // bind functions
+    this.getRoutes = this.getRoutes.bind(this);
+    this.setDate = this.setDate.bind(this);
+    this.setRouteName = this.setRouteName.bind(this);
+    this.parseDate = this.parseDate.bind(this);
+    this.setTransport = this.setTransport.bind(this);
+    this.setWaitingWindow = this.setWaitingWindow.bind(this);
+    this.setDestination = this.setDestination.bind(this);
+    this.setRoutes = this.setRoutes.bind(this);
+    this.getRoutes = this.getRoutes.bind(this);
+    this.openInMaps = this.openInMaps.bind(this);
+    this.renderCell = this.renderCell.bind(this);
+    this.onNotification = this.onNotification.bind(this);
+    this.initialise = this.initialise.bind(this);
+    this.setCurrentLocation = this.setCurrentLocation.bind(this);
+  }
   setDate(date) {
     this.setState({
       date: date,
       currentValue: date
-    }, this.getRoutes.bind(this))
+    }, this.getRoutes)
   }
 
   setRouteName(route) {
     this.setState({
       routeName: route
-    }, this.getRoutes.bind(this))
+    }, this.getRoutes)
   }
 
   parseDate(date) {
@@ -102,14 +122,14 @@ class SearchScreen extends Component {
   setTransport(option) {
     this.setState({
       transportIndex:option,
-    }, this.getRoutes.bind(this))
+    }, this.getRoutes)
   }
 
   setWaitingWindow(option) {
     this.setState({
       waitingWindow:parseInt(option),
       currentValue:option
-    }, this.getRoutes.bind(this))
+    }, this.getRoutes)
   }
 
   setDestination(name, lat, lng) {
@@ -119,7 +139,7 @@ class SearchScreen extends Component {
         lng: lng,
         name: name
       }
-    }, this.getRoutes.bind(this))
+    }, this.getRoutes)
   }
 
   setRoutes(routes) {
@@ -130,6 +150,7 @@ class SearchScreen extends Component {
   }
 
   getRoutes() {
+    // cancel search if no destination is entered yet
     if (this.state.destination.lat === undefined) return;
     this.setState({status: "Loading"});
     let origin = {lat:this.lat,lng:this.lng};
@@ -146,6 +167,9 @@ class SearchScreen extends Component {
     });
   }
 
+  /**
+   * Opens the current search in Google Maps
+   */
   openInMaps() {
     Utils.openInMaps(moment(this.state.date),
       transportModes[this.state.transportIndex].name,
@@ -154,6 +178,9 @@ class SearchScreen extends Component {
     );
   }
 
+  /**
+   * Render a search result
+   */
   renderCell(rowData, sectionID) {
     const { navigate } = this.props.navigation;
     let arrival = moment.unix(rowData.arrival_time / 1000).format('h:mm a');
@@ -202,6 +229,8 @@ class SearchScreen extends Component {
   initialise() {
     const { setParams, state } = this.props.navigation;
     this.api = new TodAPI();
+    // attach the api object to the navigator so that it's used across
+    // each screen
     setParams({api: this.api});
     // set the previous destination if we've just navigated to this page
     let params = state.params || {};
@@ -214,10 +243,12 @@ class SearchScreen extends Component {
     this.lat = lat;
     this.lng = lng;
     const { setParams } = this.props.navigation;
+    // once we've got location we are done with the login process
     setParams({loggedIn: true});
   }
 
   componentWillMount() {
+    // log in and find location
     this.initialise();
   }
 
@@ -228,7 +259,7 @@ class SearchScreen extends Component {
         <APIComponent
           api={this.api}
           onNotification={this.onNotification}
-          onComplete={this.setCurrentLocation.bind(this)}
+          onComplete={this.setCurrentLocation}
         >
           <View style={styles.container}>
             <View style={styles.searchBarContainer}>
@@ -241,7 +272,7 @@ class SearchScreen extends Component {
                   Keyboard.dismiss();
                   navigate('SearchLocation', {
                     destinationName: this.state.destination.name,
-                    onPress:this.setDestination.bind(this)
+                    onPress:this.setDestination
                   })
                 }.bind(this)}
                 value={this.state.destination.name}
@@ -250,7 +281,7 @@ class SearchScreen extends Component {
             <IconRow
               options={transportModes}
               current={this.state.transportIndex}
-              onPress={this.setTransport.bind(this)}
+              onPress={this.setTransport}
             />
             <View style={{flexDirection: 'row', justifyContent:'center'}}>
               <TouchableHighlight
@@ -261,7 +292,7 @@ class SearchScreen extends Component {
                   modal: true,
                   pickerType:"date",
                   currentValue: this.state.date,
-                  onOptionChange:this.setDate.bind(this)})
+                  onOptionChange:this.setDate})
                 }
               >
                 <Text style={{fontSize: 13, textAlign:'center'}}>
@@ -278,7 +309,7 @@ class SearchScreen extends Component {
                   pickerType:"options",
                   options: waitingOptions,
                   currentValue: this.state.waitingWindow+"",
-                  onOptionChange:this.setWaitingWindow.bind(this)})
+                  onOptionChange:this.setWaitingWindow})
                 }
               >
                 <Text style={{fontSize: 13}}>
@@ -294,12 +325,12 @@ class SearchScreen extends Component {
             <List>
               <ListView
                 enableEmptySections
-                renderRow={this.renderCell.bind(this)}
+                renderRow={this.renderCell}
                 dataSource={this.state.ds}
               />
             </List>
             <Button
-              onPress={this.openInMaps.bind(this)}
+              onPress={this.openInMaps}
               title="View In Google Maps"
             />
             <AnimatedPicker

@@ -498,6 +498,8 @@ describe('TodAPI', () => {
   });
 
   // Server error cases
+  // TODO: could probably just test _handleResponse instead of every
+  // individual call
 
   it('errors when calling scheduleTrip and server returns error', (done) => {
     let origin = {lat: 99, lng: -23};

@@ -43,6 +43,12 @@ class AddAlertScreen extends Component {
     loading: false,
     enabled: list.map(function(){return false;}),
   };
+  constructor(props) {
+    super(props);
+    // bind functions
+    this.onDayPressed = this.onDayPressed.bind(this);
+    this.scheduleTrip = this.scheduleTrip.bind(this);
+  }
   onDayPressed(i) {
     this.state.enabled[i]=!this.state.enabled[i];
     this.setState({enabled:this.state.enabled});
@@ -77,7 +83,7 @@ class AddAlertScreen extends Component {
   componentWillMount() {
     this.api = this.props.navigation.state.params.api;
     const { setParams } = this.props.navigation;
-    setParams({scheduleTrip: this.scheduleTrip.bind(this)})
+    setParams({scheduleTrip: this.scheduleTrip})
   }
   render() {
     let {route, transportIcon, subtitle} = this.props.navigation.state.params;

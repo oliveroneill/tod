@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
   },
 })
 
+/**
+ * Shows loading spinner until the errored prop becomes true,
+ * it then shows an error message and retry button
+ */
 class LoadingScreen extends Component {
   render() {
     let {errored, loadingMessage, errorMessage, retry} = this.props;
