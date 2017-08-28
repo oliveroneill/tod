@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import LoadingScreen from '../components/LoadingScreen.js';
-import TtgApi from '../utils/TtgApi.js';
+import TodAPI from '../utils/TodAPI.js';
 
 class APIComponent extends Component {
   state={
@@ -65,7 +65,7 @@ class APIComponent extends Component {
 }
 
 APIComponent.propTypes = {
-  api: PropTypes.instanceOf(TtgApi).isRequired,
+  api: PropTypes.instanceOf(TodAPI).isRequired,
   onNotification: PropTypes.func.isRequired,
   onComplete: PropTypes.func.isRequired,
 }

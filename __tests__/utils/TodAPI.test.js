@@ -1,8 +1,8 @@
 import React from 'react';
 
-import TtgApi from '../../src/utils/TtgApi.js';
+import TodAPI from '../../src/utils/TodAPI.js';
 
-describe('TtgApi', () => {
+describe('TodAPI', () => {
   beforeEach(() => {
     // Disable error logging since these tests generate errors on purpose
     // and this can be confusing looking at test output
@@ -35,7 +35,7 @@ describe('TtgApi', () => {
       done();
     }
     let onError = jest.fn();
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.setup(onRegister, jest.fn(), onError);
   });
 
@@ -58,7 +58,7 @@ describe('TtgApi', () => {
       expect(onRegister).not.toHaveBeenCalled();
       done();
     }
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.setup(onRegister, jest.fn(), onError);
   });
 
@@ -81,7 +81,7 @@ describe('TtgApi', () => {
       expect(onRegister).not.toHaveBeenCalled();
       done();
     };
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.setup(onRegister, jest.fn(), onError);
   });
 
@@ -124,7 +124,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.scheduleTrip(
         origin, dest, route, transport, inputTs, inputDateString,
@@ -163,7 +163,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getRoutes(origin, dest, transport, inputTs, routeName)
       .then((response) => {
@@ -190,7 +190,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getScheduledTrips(expectedToken)
       .then((response) => {
@@ -221,7 +221,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.enableDisableTrip(expectedTripId)
       .then((response) => {
@@ -252,7 +252,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.deleteTrip(expectedTripId)
       .then((response) => {
@@ -292,7 +292,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.scheduleTrip(
         origin, dest, route, transport, inputTs, inputDateString,
@@ -328,7 +328,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getRoutes(origin, dest, transport, inputTs, routeName)
       .catch((error) => {
@@ -357,7 +357,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getScheduledTrips(expectedToken)
       .catch((error) => {
@@ -387,7 +387,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.enableDisableTrip(expectedTripId)
       .catch((error) => {
@@ -417,7 +417,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.deleteTrip(expectedTripId)
       .catch((error) => {
@@ -435,7 +435,7 @@ describe('TtgApi', () => {
     let mockSetup = jest.fn().mockImplementation((onToken, onNotification, onError) => {
       onToken(expectedToken);
     });
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let origin = {lat: 99, lng: -23};
     let dest = {lat:45, lng: -90};
     let route = {"name":"bla"};
@@ -461,7 +461,7 @@ describe('TtgApi', () => {
     let mockSetup = jest.fn().mockImplementation((onToken, onNotification, onError) => {
       onToken(expectedToken);
     });
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.getScheduledTrips()
     .catch((error) => {
       expect(error).toEqual("Call setup() before making API requests")
@@ -475,7 +475,7 @@ describe('TtgApi', () => {
     let mockSetup = jest.fn().mockImplementation((onToken, onNotification, onError) => {
       onToken(expectedToken);
     });
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.enableDisableTrip("trip_id1")
     .catch((error) => {
       expect(error).toEqual("Call setup() before making API requests")
@@ -489,7 +489,7 @@ describe('TtgApi', () => {
     let mockSetup = jest.fn().mockImplementation((onToken, onNotification, onError) => {
       onToken(expectedToken);
     });
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     api.deleteTrip("trip_id1")
     .catch((error) => {
       expect(error).toEqual("Call setup() before making API requests")
@@ -528,7 +528,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.scheduleTrip(
         origin, dest, route, transport, inputTs, inputDateString,
@@ -566,7 +566,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getRoutes(origin, dest, transport, inputTs, routeName)
       .catch((error) => {
@@ -598,7 +598,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.getScheduledTrips(expectedToken)
       .catch((error) => {
@@ -631,7 +631,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.enableDisableTrip(expectedTripId)
       .catch((error) => {
@@ -664,7 +664,7 @@ describe('TtgApi', () => {
     });
     global.fetch = mockFetch;
     setup.setupNotifications = mockSetup;
-    let api = new TtgApi(setup);
+    let api = new TodAPI(setup);
     let onRegister = () => {
       api.deleteTrip(expectedTripId)
       .catch((error) => {

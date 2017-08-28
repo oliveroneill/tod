@@ -23,7 +23,7 @@ import IconRow from '../components/IconRow.js';
 import TouchableText from '../components/TouchableText.js';
 import AnimatedPicker from '../components/AnimatedPicker.js';
 import APIComponent from '../components/APIComponent.js';
-import TtgApi from '../utils/TtgApi.js';
+import TodAPI from '../utils/TodAPI.js';
 import Utils from '../utils/Utils.js'
 
 var deviceHeight = Dimensions.get('window').height;
@@ -201,7 +201,7 @@ class SearchScreen extends Component {
 
   initialise() {
     const { setParams, state } = this.props.navigation;
-    this.api = new TtgApi();
+    this.api = new TodAPI();
     setParams({api: this.api});
     // set the previous destination if we've just navigated to this page
     let params = state.params || {};

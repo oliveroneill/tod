@@ -5,7 +5,7 @@ import Config from 'react-native-config'
 
 const API_URL = Config.API_URL;
 
-class TtgApi {
+class TodAPI {
   /**
    * @param setup - optional argument for custom app setup, mainly used for
    * testing
@@ -60,7 +60,7 @@ class TtgApi {
         method: "POST",
         body: JSON.stringify(body)
       })
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         resolve(response)
       })
@@ -78,7 +78,7 @@ class TtgApi {
         return;
       }
       fetch(url)
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         return response.json();
       })
@@ -101,7 +101,7 @@ class TtgApi {
     if (routeName !== undefined) url += "&route_name="+routeName;
     return new Promise(function(resolve, reject) {
       fetch(url)
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         return response.json();
       })
@@ -127,7 +127,7 @@ class TtgApi {
         method: "POST",
         body: JSON.stringify(body)
       })
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         resolve(response)
       })
@@ -148,7 +148,7 @@ class TtgApi {
         method: "POST",
         body: JSON.stringify({'trip_id': id, 'user': {'user_id': this._id}})
       })
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         resolve(response)
       })
@@ -169,7 +169,7 @@ class TtgApi {
         method: "DELETE",
         body: JSON.stringify({'trip_id': id, 'user': {'user_id': this._id}})
       })
-      .then(TtgApi._handleResponse)
+      .then(TodAPI._handleResponse)
       .then(function(response) {
         resolve(response)
       })
@@ -189,7 +189,7 @@ class TtgApi {
   }
 
   static _handleResponse(response) {
-    if (TtgApi._isValidResponse(response)) {
+    if (TodAPI._isValidResponse(response)) {
       return response;
     } else {
       let error = new Error(response.statusText);
@@ -203,4 +203,4 @@ class TtgApi {
   }
 }
 
-export default TtgApi;
+export default TodAPI;

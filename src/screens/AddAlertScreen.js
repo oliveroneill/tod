@@ -9,7 +9,7 @@ import {
 import { List, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types';
 
-import TtgApi from '../utils/TtgApi.js';
+import TodAPI from '../utils/TodAPI.js';
 import LoadingScreen from '../components/LoadingScreen.js';
 import TouchableText from '../components/TouchableText.js';
 import styles from '../style/Styles.js'

@@ -5,7 +5,7 @@ import {
 import renderer from 'react-test-renderer';
 
 import APIComponent from '../../src/components/APIComponent.js';
-import TtgApi from '../../src/utils/TtgApi.js';
+import TodAPI from '../../src/utils/TodAPI.js';
 
 describe('APIComponent', () => {
   beforeEach(() => {
