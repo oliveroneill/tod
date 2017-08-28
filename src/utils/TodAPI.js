@@ -61,7 +61,7 @@ class TodAPI {
         resolve(response)
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
@@ -99,7 +99,7 @@ class TodAPI {
         resolve(response)
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
@@ -120,7 +120,7 @@ class TodAPI {
         resolve(responseJson);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
@@ -143,7 +143,7 @@ class TodAPI {
         resolve(responseJson);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
@@ -164,7 +164,7 @@ class TodAPI {
         resolve(response)
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
@@ -185,7 +185,7 @@ class TodAPI {
         resolve(response)
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         reject(error);
       });
     }.bind(this));
