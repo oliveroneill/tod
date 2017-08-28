@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays routes correctly 1`] = `
+exports[`SearchScreen displays routes correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays route correctly 1`] = `
+exports[`AddAlertScreen displays route correctly 1`] = `
 <View
   style={
     Object {

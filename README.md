@@ -59,5 +59,5 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 3. Make sure that you can run adb from your terminal.
 
 ## TODO
-- Unit test API usage
 - Figure out how to decouple route data from views so that we can easily snapshot test (this should fix `Switch` warning mentioned in `npm test` section above)
+- Use linter such as [semistandard](https://github.com/Flet/semistandard)

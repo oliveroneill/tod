@@ -6,20 +6,30 @@ import Config from 'react-native-config'
 const API_URL = Config.API_URL;
 
 class TtgApi {
-  constructor(onRegister, onNotification, onError) {
-    this._setup = new AppSetup();
-    this._errorCallback = onError;
+  /**
+   * @param setup - optional argument for custom app setup, mainly used for
+   * testing
+  */
+  constructor(setup) {
+    if (setup === undefined)
+      this._setup = new AppSetup();
+    else
+      this._setup = setup;
     this._id = null;
+  }
+
+  setup(onRegister, onNotification, onError) {
     this._setup.setupNotifications(
       function(id, token) {
+        this._id = id;
         this.sendToken(id, token)
         .then(function() {
-          this._id = id;
           onRegister();
         })
         .catch(error => onError(error))
       }.bind(this),
-      onNotification
+      onNotification,
+      onError
     );
   }
 
@@ -43,48 +53,43 @@ class TtgApi {
       "repeat_days": repeats
     }
     return new Promise(function(resolve, reject) {
+      if (this._rejectWhenNotSetup(reject)) {
+        return;
+      }
       fetch(url, {
         method: "POST",
         body: JSON.stringify(body)
       })
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseJson) => {
-        if (responseJson.error !== null) {
-          console.log(responseJson.error);
-          reject(responseJson.error);
-        } else {
-          resolve(responseJson);
-        }
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
+        resolve(response)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
   }
 
   getScheduledTrips() {
     let url = API_URL+"/api/get-scheduled-trips?user_id="+this._id;
     return new Promise(function(resolve, reject) {
+      if (this._rejectWhenNotSetup(reject)) {
+        return;
+      }
       fetch(url)
-      .then((response) => {
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
         return response.json();
       })
       .then((responseJson) => {
-        if (responseJson.error === null) {
-          resolve(responseJson.trips);
-        } else {
-          console.log(responseJson.error);
-          reject(responseJson.error);
-        }
+        resolve(responseJson);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
   }
 
   getRoutes(origin, dest, transport, arrivalTime, routeName) {
@@ -96,7 +101,8 @@ class TtgApi {
     if (routeName !== undefined) url += "&route_name="+routeName;
     return new Promise(function(resolve, reject) {
       fetch(url)
-      .then((response) => {
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
         return response.json();
       })
       .then((responseJson) => {
@@ -106,11 +112,10 @@ class TtgApi {
         console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
   }
 
   sendToken(userId, token) {
-    this._id = userId;
     let url = API_URL+"/api/register-user";
     let body = {
       "user_id": userId,
@@ -122,48 +127,79 @@ class TtgApi {
         method: "POST",
         body: JSON.stringify(body)
       })
-      .then((response) => {
-        resolve(response);
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
+        resolve(response)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
   }
 
   enableDisableTrip(id) {
     let url = API_URL+"/api/enable-disable-trip";
     return new Promise(function(resolve, reject) {
+      if (this._rejectWhenNotSetup(reject)) {
+        return;
+      }
       fetch(url, {
         method: "POST",
         body: JSON.stringify({'trip_id': id, 'user': {'user_id': this._id}})
       })
-      .then((response) => {
-        resolve(response);
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
+        resolve(response)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
   }
 
   deleteTrip(id) {
     let url = API_URL+"/api/delete-trip";
     return new Promise(function(resolve, reject) {
+      if (this._rejectWhenNotSetup(reject)) {
+        return;
+      }
       fetch(url, {
         method: "DELETE",
         body: JSON.stringify({'trip_id': id, 'user': {'user_id': this._id}})
       })
-      .then((response) => {
-        resolve(response);
+      .then(TtgApi._handleResponse)
+      .then(function(response) {
+        resolve(response)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         reject(error);
       });
-    });
+    }.bind(this));
+  }
+
+  _rejectWhenNotSetup(reject) {
+    if (this._id === null) {
+      reject("Call setup() before making API requests")
+      return true;
+    }
+    return false;
+  }
+
+  static _handleResponse(response) {
+    if (TtgApi._isValidResponse(response)) {
+      return response;
+    } else {
+      let error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    }
+  }
+
+  static _isValidResponse(response) {
+    return response.status >= 200 && response.status < 300;
   }
 }
 

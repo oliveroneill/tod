@@ -19,32 +19,39 @@ const styles = StyleSheet.create({
 class LoadingScreen extends Component {
   render() {
     let {errored, loadingMessage, errorMessage, retry} = this.props;
+    if (errored) {
+      // error screen
+      return (
+        <View>
+          <View style={
+            [
+              styles.topOfScreen,
+              {paddingLeft:10, flexDirection: 'row', justifyContent:'center'}
+            ]
+          }>
+            <Text>{errorMessage}</Text>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent:'center'}}>
+            <Button
+              onPress={retry}
+              title="Try again"
+            />
+          </View>
+        </View>
+      )
+    }
+
+    // loading screen
     return (
       <View>
-        {errored ?
-          <View>
-            <View style={[styles.topOfScreen, {paddingLeft:10, flexDirection: 'row', justifyContent:'center'}]}>
-              <Text>{errorMessage}</Text>
-            </View>
-            <View style={{flexDirection: 'row', justifyContent:'center'}}>
-              <Button
-                onPress={retry}
-                title="Try again"
-              />
-            </View>
-          </View>
-        :
-          <View>
-            <ActivityIndicator
-              animating={true}
-              style={{height: 80}}
-              size="large"
-            />
-            <View style={{flexDirection: 'row', justifyContent:'center'}}>
-              <Text>{loadingMessage}</Text>
-            </View>
-          </View>
-        }
+        <ActivityIndicator
+          animating={true}
+          style={{height: 80}}
+          size="large"
+        />
+        <View style={{flexDirection: 'row', justifyContent:'center'}}>
+          <Text>{loadingMessage}</Text>
+        </View>
       </View>
     )
   }

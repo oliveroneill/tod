@@ -22,7 +22,7 @@ import styles from '../style/Styles.js'
 import IconRow from '../components/IconRow.js';
 import TouchableText from '../components/TouchableText.js';
 import AnimatedPicker from '../components/AnimatedPicker.js';
-import LoadingScreen from '../components/LoadingScreen.js';
+import APIComponent from '../components/APIComponent.js';
 import TtgApi from '../utils/TtgApi.js';
 import Utils from '../utils/Utils.js'
 
@@ -75,9 +75,7 @@ class SearchScreen extends Component {
     onOptionChange: function(){},
     currentValue: null,
     routes: [],
-    ds: ds,
-    loading:true,
-    errored: false,
+    ds: ds
   };
 
   setDate(date) {
@@ -194,45 +192,29 @@ class SearchScreen extends Component {
     );
   }
 
+  onNotification(notification) {
+    if (notification.alert !== undefined)
+      alert(notification.alert);
+    else
+      alert(notification.notification.body);
+  }
+
   initialise() {
-    const { setParams } = this.props.navigation;
-    this.setState({'errored': false});
-    this.setState({'loading': true});
-    this.api = new TtgApi(function(){
-      // get current location
-      this.setupCurrentLocation();
-    }.bind(this),
-    function(notification){
-      if (notification.alert !== undefined)
-        alert(notification.alert);
-      else
-        alert(notification.notification.body);
-    },
-    function(){
-      this.setState({'errored': true})
-    }.bind(this));
+    const { setParams, state } = this.props.navigation;
+    this.api = new TtgApi();
     setParams({api: this.api});
-    let params = this.props.navigation.state.params || {};
+    // set the previous destination if we've just navigated to this page
+    let params = state.params || {};
     if (params.name !== undefined) {
       this.setDestination(params.name, params.lat, params.lng);
     }
   }
 
-  setupCurrentLocation() {
+  setCurrentLocation(lat, lng) {
+    this.lat = lat;
+    this.lng = lng;
     const { setParams } = this.props.navigation;
-    navigator.geolocation.getCurrentPosition(
-      function(origin) {
-        this.lat = origin.coords.latitude;
-        this.lng = origin.coords.longitude;
-        this.setState({'loading': false});
-        setParams({loggedIn: true});
-      }.bind(this),
-      function(error){
-        alert("Please enable location and try again");
-        this.setState({'errored': true})
-      }.bind(this),
-      {enableHighAccuracy: true}
-    );
+    setParams({loggedIn: true});
   }
 
   componentWillMount() {
@@ -243,14 +225,11 @@ class SearchScreen extends Component {
     const { navigate, setParams } = this.props.navigation;
     return (
       <View style={styles.screen}>
-        { this.state.loading ?
-          <LoadingScreen
-            errored={this.state.errored}
-            loadingMessage="Logging in..."
-            errorMessage="Unfortunately we couldn't log you in. Please ensure you have an internet connection."
-            retry={this.initialise.bind(this)}
-          />
-        :
+        <APIComponent
+          api={this.api}
+          onNotification={this.onNotification}
+          onComplete={this.setCurrentLocation.bind(this)}
+        >
           <View style={styles.container}>
             <View style={styles.searchBarContainer}>
               <TextInput
@@ -334,7 +313,7 @@ class SearchScreen extends Component {
               maxDate={moment().add(3, 'months').toDate()}
             />
           </View>
-        }
+        </APIComponent>
       </View>
     )
   }

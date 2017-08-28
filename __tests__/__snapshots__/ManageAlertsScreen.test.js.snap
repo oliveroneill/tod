@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays routes correctly 1`] = `
+exports[`ManageAlertsScreen displays routes correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
@@ -237,7 +237,7 @@ exports[`displays routes correctly 1`] = `
 </View>
 `;
 
-exports[`displays routes correctly while editing 1`] = `
+exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}

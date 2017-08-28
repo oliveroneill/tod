@@ -7,7 +7,7 @@ class AppSetup {
     this._id = null;
   }
 
-  getUserId() {
+  _getUserId() {
     return new Promise(function(resolve, reject) {
       // if we've already stored the id then return this
       if (this._id != null) {
@@ -23,13 +23,14 @@ class AppSetup {
     }.bind(this));
   }
 
-  setupNotifications(onToken, onNotification) {
+  setupNotifications(onToken, onNotification, onError) {
     PushNotification.configure({
       onRegister: function(token) {
-        this.getUserId()
+        this._getUserId()
         .then((id) => {
           onToken(id, token.token);
-        });
+        })
+        .catch(error => onError(error));
       }.bind(this),
       onNotification: function(notification) {
         onNotification(notification);

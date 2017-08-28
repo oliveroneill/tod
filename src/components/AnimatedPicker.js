@@ -6,7 +6,6 @@ import {
   View,
   DatePickerIOS,
   Picker,
-  Animated,
   TouchableHighlight,
   Platform,
 } from 'react-native';
@@ -33,17 +32,18 @@ const styles = StyleSheet.create({
 });
 
 class AnimatedPicker extends Component {
-  usingAndroidDatePicker() {
-    return Platform.OS === 'android' && this.props.type === "date" && this.props.isVisible;
-  }
   render() {
     var defaultDate = new Date();
-    if (this.props.type === 'date')
+    let usingAndroid = Platform.OS === 'android';
+    let isDatePicker = this.props.type === "date";
+    let isVisible = this.props.isVisible;
+    let usingAndroidDatePicker = usingAndroid && isDatePicker && isVisible;
+    if (isDatePicker)
       defaultDate = this.props.currentOption;
     return (
       <View>
         <DateTimePicker
-          isVisible={this.usingAndroidDatePicker()}
+          isVisible={usingAndroidDatePicker}
           onConfirm={this.props.onOptionChange}
           onCancel={this.props.onClose}
           mode='datetime'
@@ -52,7 +52,7 @@ class AnimatedPicker extends Component {
           maximumDate={this.props.maxDate}
         />
         <Modal
-          isVisible={this.props.isVisible && !this.usingAndroidDatePicker()}
+          isVisible={isVisible && !usingAndroidDatePicker}
           style={{justifyContent:'flex-end', margin:0}}
           backdropOpacity={0}
         >
@@ -63,7 +63,7 @@ class AnimatedPicker extends Component {
               Done
             </TouchableText>
           </View>
-          {this.props.type === "date" ?
+          {isDatePicker ?
             <DatePickerIOS
               date={this.props.currentOption}
               minimumDate={this.props.minDate}
