@@ -18,7 +18,7 @@ React native app for scheduling trips so that a notification is sent when it's t
 API URL and FCM sender ID are set via [react-native-config](https://github.com/luggit/react-native-config), this
 can be done by creating a `.env` file and specifying `API_URL` and `FCM_SENDER_ID`.
 
-I'll be open sourcing the server for this project soon and will put a link to that here.
+The server side component for this app is available [here](https://github.com/oliveroneill/todserver)
 
 ## Updating to New Releases
 
