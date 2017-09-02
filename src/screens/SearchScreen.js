@@ -17,6 +17,7 @@ import {
 import moment from 'moment-timezone';
 import { List, ListItem, Icon } from 'react-native-elements'
 import PropTypes from 'prop-types';
+import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
 import styles from '../style/Styles.js'
 import IconRow from '../components/IconRow.js';
@@ -295,7 +296,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setDate})
                 }
               >
-                <Text style={{fontSize: 13, textAlign:'center'}}>
+                <Text style={{fontSize: responsiveFontSize(1.5), textAlign:'center'}}>
                   Arrive at: {this.parseDate(this.state.date)}
                 </Text>
               </TouchableHighlight>
@@ -312,7 +313,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setWaitingWindow})
                 }
               >
-                <Text style={{fontSize: 13}}>
+                <Text style={{fontSize: responsiveFontSize(1.5)}}>
                   Waiting Window: {waitingOptions[this.state.waitingWindow]}
                 </Text>
               </TouchableHighlight>
