@@ -6,7 +6,7 @@ describe('TodAPI', () => {
   beforeEach(() => {
     // Disable error logging since these tests generate errors on purpose
     // and this can be confusing looking at test output
-    console.error = jest.fn()
+    console.log = jest.fn()
   })
 
   // Setup tests
