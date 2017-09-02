@@ -62,13 +62,12 @@ class AddAlertScreen extends Component {
       inputArrivalDateString,
       origin,
       dest,
-      waitingWindowMs,
-      enabled
+      waitingWindowMs
     } = params;
     this.setState({loading: true})
     this.api.scheduleTrip(
       origin, dest, route, transport, inputArrival,
-      inputArrivalDateString, waitingWindow, enabled
+      inputArrivalDateString, waitingWindowMs, this.state.enabled
     )
     .then(function() {
       alert("Trip successfully scheduled! Please note this is still a beta project");
