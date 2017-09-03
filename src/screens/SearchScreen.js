@@ -17,7 +17,6 @@ import {
 import moment from 'moment-timezone';
 import { List, ListItem, Icon } from 'react-native-elements'
 import PropTypes from 'prop-types';
-import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
 import styles from '../style/Styles.js'
 import IconRow from '../components/IconRow.js';
@@ -117,7 +116,7 @@ class SearchScreen extends Component {
     if (moment().isoWeek() == input.isoWeek()) {
       return input.format("dddd h:mma");
     }
-    return input.format("ddd MMMM Do h:mma");
+    return input.format("ddd MMM Do h:mma");
   }
 
   setTransport(option) {
@@ -296,7 +295,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setDate})
                 }
               >
-                <Text style={{fontSize: responsiveFontSize(1.5), textAlign:'center'}}>
+                <Text style={{fontSize: 11, textAlign:'center'}}>
                   Arrive at: {this.parseDate(this.state.date)}
                 </Text>
               </TouchableHighlight>
@@ -313,7 +312,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setWaitingWindow})
                 }
               >
-                <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                <Text style={{fontSize: 11}}>
                   Waiting Window: {waitingOptions[this.state.waitingWindow]}
                 </Text>
               </TouchableHighlight>
