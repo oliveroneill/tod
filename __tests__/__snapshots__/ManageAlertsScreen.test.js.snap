@@ -2,41 +2,22 @@
 
 exports[`ManageAlertsScreen displays routes correctly 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
-  accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
+  onLongPress={undefined}
+  onPress={undefined}
   style={
     Array [
       Object {
         "backgroundColor": "transparent",
+        "borderBottomColor": "#bbb",
+        "borderBottomWidth": 0.5,
+        "paddingBottom": 10,
+        "paddingRight": 10,
+        "paddingTop": 10,
       },
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-          "borderBottomColor": "#bbb",
-          "borderBottomWidth": 0.5,
-          "paddingBottom": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
-        },
-        undefined,
-      ],
+      undefined,
     ]
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  underlayColor="#e1e1e1"
 >
   <View
     style={
@@ -239,41 +220,22 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
 
 exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
-  accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
+  onLongPress={undefined}
+  onPress={undefined}
   style={
     Array [
       Object {
         "backgroundColor": "transparent",
+        "borderBottomColor": "#bbb",
+        "borderBottomWidth": 0.5,
+        "paddingBottom": 10,
+        "paddingRight": 10,
+        "paddingTop": 10,
       },
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-          "borderBottomColor": "#bbb",
-          "borderBottomWidth": 0.5,
-          "paddingBottom": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
-        },
-        undefined,
-      ],
+      undefined,
     ]
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  underlayColor="#e1e1e1"
 >
   <View
     style={

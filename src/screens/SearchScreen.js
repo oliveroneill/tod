@@ -116,7 +116,7 @@ class SearchScreen extends Component {
     if (moment().isoWeek() == input.isoWeek()) {
       return input.format("dddd h:mma");
     }
-    return input.format("ddd MMMM Do h:mma");
+    return input.format("ddd MMM Do h:mma");
   }
 
   setTransport(option) {
@@ -295,7 +295,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setDate})
                 }
               >
-                <Text style={{fontSize: 13, textAlign:'center'}}>
+                <Text style={{fontSize: 11, textAlign:'center'}}>
                   Arrive at: {this.parseDate(this.state.date)}
                 </Text>
               </TouchableHighlight>
@@ -312,7 +312,7 @@ class SearchScreen extends Component {
                   onOptionChange:this.setWaitingWindow})
                 }
               >
-                <Text style={{fontSize: 13}}>
+                <Text style={{fontSize: 11}}>
                   Waiting Window: {waitingOptions[this.state.waitingWindow]}
                 </Text>
               </TouchableHighlight>

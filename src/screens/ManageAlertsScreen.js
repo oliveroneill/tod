@@ -118,7 +118,6 @@ class ManageAlertsScreen extends Component {
         title={rowData.route.description}
         subtitle={subtitle}
         underlayColor='#e1e1e1'
-        onPress={() => {Utils.openInMaps(arrivalDate, rowData.transport_type, rowData.origin, rowData.destination)}}
         rightIcon={{'name':'remove-circle', 'color': 'red'}}
         onPressRightIcon={() => this.deleteTrip(rowData.trip_id)}
         hideChevron={!this.state.editing}
