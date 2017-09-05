@@ -50,7 +50,7 @@ class AnimatedPicker extends Component {
       <View>
         <DateTimePicker
           isVisible={usingAndroidDatePicker}
-          onConfirm={this.props.onOptionChange}
+          onConfirm={() => {this.props.onOptionChange(); this.props.onClose();}}
           onCancel={this.props.onClose}
           mode='datetime'
           date={defaultDate}
