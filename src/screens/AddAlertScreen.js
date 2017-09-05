@@ -70,7 +70,7 @@ class AddAlertScreen extends Component {
       inputArrivalDateString, waitingWindowMs, this.state.enabled
     )
     .then(function() {
-      alert("Trip successfully scheduled! Please note this is still a beta project");
+      alert("Trip successfully scheduled!");
       this.setState({loading:false});
       this.props.navigation.goBack();
     }.bind(this))
