@@ -313,7 +313,7 @@ class SearchScreen extends Component {
                 }
               >
                 <Text style={{fontSize: 11}}>
-                  Waiting Window: {waitingOptions[this.state.waitingWindow]}
+                  Alert {waitingOptions[this.state.waitingWindow]} before
                 </Text>
               </TouchableHighlight>
             </View>
