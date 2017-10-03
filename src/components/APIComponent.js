@@ -45,7 +45,7 @@ class APIComponent extends Component {
         alert("Please enable location and try again");
         this.setState({'errored': true})
       }.bind(this),
-      {enableHighAccuracy: true}
+      {enableHighAccuracy: false}
     );
   }
 
