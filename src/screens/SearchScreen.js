@@ -193,7 +193,8 @@ class SearchScreen extends Component {
       description += " - ";
     }
     let subtitle = description+"Alert at "+departure+" and arrive at "+arrival;
-    let dateString = moment(this.state.date).tz(moment.tz.guess()).format("YYYY-MM-DDTHH:mm:ssZ z");
+    let tzLocation = moment.tz.guess();
+    let dateString = moment(this.state.date).tz(tzLocation).format("YYYY-MM-DDTHH:mm:ssZ z");
     let props = {
       origin: {lat:this.lat, lng:this.lng},
       dest: this.state.destination,
@@ -205,6 +206,7 @@ class SearchScreen extends Component {
       transportIcon:transportModes[this.state.transportIndex].icon,
       transport:transportModes[this.state.transportIndex].name,
       waitingWindowMs: waitingWindowMs,
+      timezoneLocation: tzLocation,
       api: this.api,
     };
     return (

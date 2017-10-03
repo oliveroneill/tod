@@ -67,7 +67,7 @@ class TodAPI {
     }.bind(this));
   }
 
-  scheduleTrip(origin, dest, route, transport, inputTs, inputDateString, waitingWindowMs, repeats) {
+  scheduleTrip(origin, dest, route, transport, inputTs, inputDateString, waitingWindowMs, tzLoc, repeats) {
     let url = API_URL+"/api/schedule-trip";
     let body = {
       "user": {"user_id":this._id},
@@ -80,7 +80,8 @@ class TodAPI {
       "transport_type": transport,
       "input_arrival_time": {
         'timestamp': inputTs,
-        'local_date_string': inputDateString
+        'local_date_string': inputDateString,
+        'timezone_location': tzLoc
       },
       "route": route,
       "waiting_window_ms": waitingWindowMs,
