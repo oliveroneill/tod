@@ -95,6 +95,7 @@ describe('TodAPI', () => {
     let inputTs = 34232211;
     let inputDateString = "21st March 2011";
     let waitingWindowMs = 5000;
+    let tzLoc = "Australia/Sydney";
     let repeats = [false, true, true, false, false, false];
 
     let setup = {};
@@ -115,6 +116,7 @@ describe('TodAPI', () => {
           expect(body.transport_type).toEqual(transport);
           expect(body.input_arrival_time.timestamp).toEqual(inputTs);
           expect(body.input_arrival_time.local_date_string).toEqual(inputDateString);
+          expect(body.input_arrival_time.timezone_location).toEqual(tzLoc);
           expect(body.route).toEqual(route);
           expect(body.waiting_window_ms).toEqual(waitingWindowMs);
           expect(body.repeat_days).toEqual(repeats);
@@ -128,7 +130,7 @@ describe('TodAPI', () => {
     let onRegister = () => {
       api.scheduleTrip(
         origin, dest, route, transport, inputTs, inputDateString,
-        waitingWindowMs, repeats
+        waitingWindowMs, tzLoc, repeats
       )
       .then((response) => {
         done();
