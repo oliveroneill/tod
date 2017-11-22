@@ -59,6 +59,7 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 3. Make sure that you can run adb from your terminal.
 
 ## TODO
+- Use Redux
 - Figure out how to decouple route data from views so that we can easily snapshot test (this should fix `Switch` warning mentioned in `npm test` section above)
 - Add in an optional warning notification ten minutes before it's time to leave
 - Use linter such as [semistandard](https://github.com/Flet/semistandard)
