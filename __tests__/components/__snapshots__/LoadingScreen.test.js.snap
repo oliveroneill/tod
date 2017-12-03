@@ -19,7 +19,6 @@ exports[`LoadingScreen displays error with try again option 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
     >
       Unfortunately we couldn't log you in. Please ensure you have an internet connection.
@@ -71,7 +70,7 @@ exports[`LoadingScreen displays error with try again option 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
+          disabled={undefined}
           ellipsizeMode="tail"
           style={
             Array [
@@ -116,7 +115,6 @@ exports[`LoadingScreen displays loading screen while loading 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
     >
       Logging in...

@@ -23,7 +23,7 @@ exports[`AddAlertScreen displays route correctly 1`] = `
           Object {
             "backgroundColor": "#ffffff",
             "borderColor": "#bbb",
-            "borderTopWidth": 0.5,
+            "borderTopWidth": 1,
             "marginTop": 20,
           },
           Object {
@@ -33,6 +33,7 @@ exports[`AddAlertScreen displays route correctly 1`] = `
       }
     >
       <View
+        disabled={false}
         onLongPress={undefined}
         onPress={undefined}
         style={
@@ -40,12 +41,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
             Object {
               "backgroundColor": "transparent",
               "borderBottomColor": "#bbb",
-              "borderBottomWidth": 0.5,
+              "borderBottomWidth": 1,
               "paddingBottom": 10,
               "paddingRight": 10,
               "paddingTop": 10,
             },
             undefined,
+            false,
+            false,
           ]
         }
         underlayColor="white"
@@ -75,7 +78,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -111,7 +113,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={3}
                 style={
@@ -150,7 +151,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -168,7 +168,7 @@ exports[`AddAlertScreen displays route correctly 1`] = `
           Object {
             "backgroundColor": "#ffffff",
             "borderColor": "#bbb",
-            "borderTopWidth": 0.5,
+            "borderTopWidth": 1,
             "marginTop": 20,
           },
           Object {
@@ -202,12 +202,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -239,7 +241,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -304,12 +305,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -341,7 +344,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -406,12 +408,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -443,7 +447,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -508,12 +511,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -545,7 +550,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -610,12 +614,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -647,7 +653,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -712,12 +717,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -749,7 +756,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -814,12 +820,14 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               Object {
                 "backgroundColor": "transparent",
                 "borderBottomColor": "#bbb",
-                "borderBottomWidth": 0.5,
+                "borderBottomWidth": 1,
                 "paddingBottom": 10,
                 "paddingRight": 10,
                 "paddingTop": 10,
               },
               undefined,
+              false,
+              false,
             ],
           ]
         }
@@ -851,7 +859,6 @@ exports[`AddAlertScreen displays route correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={

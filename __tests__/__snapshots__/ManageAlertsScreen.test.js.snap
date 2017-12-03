@@ -2,6 +2,7 @@
 
 exports[`ManageAlertsScreen displays routes correctly 1`] = `
 <View
+  disabled={false}
   onLongPress={undefined}
   onPress={undefined}
   style={
@@ -9,12 +10,14 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
       Object {
         "backgroundColor": "transparent",
         "borderBottomColor": "#bbb",
-        "borderBottomWidth": 0.5,
+        "borderBottomWidth": 1,
         "paddingBottom": 10,
         "paddingRight": 10,
         "paddingTop": 10,
       },
       undefined,
+      false,
+      false,
     ]
   }
   underlayColor="#e1e1e1"
@@ -31,6 +34,7 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
     }
   >
     <View
+      disabled={false}
       onLongPress={undefined}
       onPress={undefined}
       style={
@@ -38,9 +42,6 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
           Object {
             "alignItems": "center",
             "justifyContent": "center",
-          },
-          Object {
-            "flex": 0.15,
           },
           undefined,
         ]
@@ -68,7 +69,6 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={false}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -114,7 +114,6 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
@@ -150,7 +149,6 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={3}
           style={
@@ -187,7 +185,6 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
-          "flex": 0.15,
           "justifyContent": "center",
           "marginRight": 5,
         }
@@ -220,6 +217,7 @@ exports[`ManageAlertsScreen displays routes correctly 1`] = `
 
 exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
 <View
+  disabled={false}
   onLongPress={undefined}
   onPress={undefined}
   style={
@@ -227,12 +225,14 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
       Object {
         "backgroundColor": "transparent",
         "borderBottomColor": "#bbb",
-        "borderBottomWidth": 0.5,
+        "borderBottomWidth": 1,
         "paddingBottom": 10,
         "paddingRight": 10,
         "paddingTop": 10,
       },
       undefined,
+      false,
+      false,
     ]
   }
   underlayColor="#e1e1e1"
@@ -249,6 +249,7 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
     }
   >
     <View
+      disabled={false}
       onLongPress={undefined}
       onPress={undefined}
       style={
@@ -256,9 +257,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
           Object {
             "alignItems": "center",
             "justifyContent": "center",
-          },
-          Object {
-            "flex": 0.15,
           },
           undefined,
         ]
@@ -286,7 +284,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
           <Text
             accessible={true}
             allowFontScaling={false}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -332,7 +329,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
@@ -368,7 +364,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={3}
           style={
@@ -420,7 +415,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
-          "flex": 0.15,
           "justifyContent": "center",
           "opacity": 1,
         }
@@ -448,7 +442,6 @@ exports[`ManageAlertsScreen displays routes correctly while editing 1`] = `
         <Text
           accessible={true}
           allowFontScaling={false}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

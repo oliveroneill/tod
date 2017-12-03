@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-  View
+  View,
+  Alert
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -42,7 +43,7 @@ class APIComponent extends Component {
         onComplete(lat, lng);
       }.bind(this),
       function(error){
-        alert("Please enable location and try again");
+        Alert.alert("Please enable location and try again");
         this.setState({'errored': true})
       }.bind(this),
       {enableHighAccuracy: false}

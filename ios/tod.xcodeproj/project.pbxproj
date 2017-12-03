@@ -250,6 +250,34 @@
 			remoteGlobalIDString = EB2648DF1C7BE17A00B8F155;
 			remoteInfo = ReactNativeConfig;
 		};
+		7D42D9561FCA920500E83309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		7D42D9581FCA920500E83309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		7D42D9681FCA920500E83309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
+		};
+		7D42D96A1FCA920500E83309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
+		};
 		7DF524351F3E8350000CF6D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DF524261F3E8350000CF6D5 /* RCTPushNotification.xcodeproj */;
@@ -469,6 +497,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				7D42D9571FCA920500E83309 /* libfishhook.a */,
+				7D42D9591FCA920500E83309 /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -503,6 +533,8 @@
 				7DF5244F1F3E8350000CF6D5 /* libthird-party.a */,
 				7DF524511F3E8350000CF6D5 /* libdouble-conversion.a */,
 				7DF524531F3E8350000CF6D5 /* libdouble-conversion.a */,
+				7D42D9691FCA920500E83309 /* libprivatedata.a */,
+				7D42D96B1FCA920500E83309 /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -531,6 +563,14 @@
 				7D1191CC1F3E8C8A005DDB88 /* libReactNativeConfig.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7D42D9401FCA920300E83309 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				73EEDDF7E70D41908F9717CF /* libReactNativeConfig.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		7D95DC831F3F12180099D60C /* Fonts */ = {
@@ -597,6 +637,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* todTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				7D42D9401FCA920300E83309 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -972,6 +1013,34 @@
 			fileType = archive.ar;
 			path = libReactNativeConfig.a;
 			remoteRef = 7D1191CB1F3E8C8A005DDB88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D42D9571FCA920500E83309 /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = 7D42D9561FCA920500E83309 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D42D9591FCA920500E83309 /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = 7D42D9581FCA920500E83309 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D42D9691FCA920500E83309 /* libprivatedata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprivatedata.a;
+			remoteRef = 7D42D9681FCA920500E83309 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D42D96B1FCA920500E83309 /* libprivatedata-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = 7D42D96A1FCA920500E83309 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7DF524361F3E8350000CF6D5 /* libRCTPushNotification.a */ = {
