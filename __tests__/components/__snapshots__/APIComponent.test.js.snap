@@ -74,6 +74,7 @@ exports[`APIComponent shows error case on send token failure 1`] = `
       }
       accessible={true}
       collapsable={undefined}
+      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
@@ -165,6 +166,7 @@ exports[`APIComponent shows error case when location is disabled 1`] = `
       }
       accessible={true}
       collapsable={undefined}
+      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
