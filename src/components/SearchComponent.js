@@ -24,17 +24,16 @@ import TouchableText from '../components/TouchableText.js';
 import AnimatedPicker from '../components/AnimatedPicker.js';
 import Utils from '../utils/Utils.js'
 
-var deviceHeight = Dimensions.get('window').height;
-const transportModes = Utils.getTransportModes();
-
-var waitingOptions = Utils.generateWaitingWindows();
+const ARRIVAL_TIME_MS_FROM_NOW = 30 * 60 * 1000;
+const TRANSPORT_MODES = Utils.getTransportModes();
+const WAITING_OPTIONS = Utils.generateWaitingWindows();
 
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class SearchComponent extends Component {
   state = {
     // query input
-    date: new Date(Date.now()),
+    date: new Date(Date.now() + ARRIVAL_TIME_MS_FROM_NOW),
     waitingWindow: 5,
     transportIndex: 0,
     destination: {
@@ -117,7 +116,7 @@ class SearchComponent extends Component {
     let origin = {lat:currentLocation.lat,lng:currentLocation.lng};
     let dest = this.state.destination;
     let arrival = Math.ceil(this.state.date.valueOf());
-    let transport = transportModes[this.state.transportIndex].name;
+    let transport = TRANSPORT_MODES[this.state.transportIndex].name;
     api.getRoutes(origin, dest, transport, arrival)
     .then((routes) => {
       this.setState({status: undefined});
@@ -134,7 +133,7 @@ class SearchComponent extends Component {
   openInMaps() {
     const { currentLocation } = this.props;
     Utils.openInMaps(moment(this.state.date),
-      transportModes[this.state.transportIndex].name,
+      TRANSPORT_MODES[this.state.transportIndex].name,
       {lat:currentLocation.lat, lng:currentLocation.lng},
       this.state.destination
     );
@@ -166,8 +165,8 @@ class SearchComponent extends Component {
       inputArrivalDateString:dateString,
       departure:departure_ts,
       subtitle:subtitle,
-      transportIcon:transportModes[this.state.transportIndex].icon,
-      transport:transportModes[this.state.transportIndex].name,
+      transportIcon:TRANSPORT_MODES[this.state.transportIndex].icon,
+      transport:TRANSPORT_MODES[this.state.transportIndex].name,
       waitingWindowMs: waitingWindowMs,
       timezoneLocation: tzLocation,
       api: api,
@@ -213,7 +212,7 @@ class SearchComponent extends Component {
           />
         </View>
         <IconRow
-          options={transportModes}
+          options={TRANSPORT_MODES}
           current={this.state.transportIndex}
           onPress={this.setTransport}
         />
@@ -241,13 +240,13 @@ class SearchComponent extends Component {
             onPress={ () => this.setState({
               modal: true,
               pickerType:"options",
-              options: waitingOptions,
+              options: WAITING_OPTIONS,
               currentValue: this.state.waitingWindow+"",
               onOptionChange:this.setWaitingWindow})
             }
           >
             <Text style={{fontSize: 11}}>
-              Alert {waitingOptions[this.state.waitingWindow]} before
+              Alert {WAITING_OPTIONS[this.state.waitingWindow]} before
             </Text>
           </TouchableHighlight>
         </View>
