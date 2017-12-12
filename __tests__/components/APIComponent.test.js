@@ -7,10 +7,22 @@ import renderer from 'react-test-renderer';
 import APIComponent from '../../src/components/APIComponent.js';
 import TodAPI from '../../src/utils/TodAPI.js';
 
+function mockTodAPI() {
+  // Mock out the interface to TodAPI
+  // So that we can avoid warning with PropTypes
+  TodAPI.prototype.setup = jest.fn();
+  TodAPI.prototype.sendToken = jest.fn();
+  TodAPI.prototype.scheduleTrip = jest.fn();
+  TodAPI.prototype.getScheduledTrips = jest.fn();
+  TodAPI.prototype.getRoutes = jest.fn();
+  TodAPI.prototype.enableDisableTrip = jest.fn();
+  TodAPI.prototype.deleteTrip = jest.fn();
+}
+
 function setup() {
   navigator.geolocation.getCurrentPosition = jest.fn();
-  let api = {};
-  api.setup = jest.fn();
+  mockTodAPI();
+  let api = new TodAPI();
   return api;
 }
 
@@ -53,7 +65,7 @@ describe('APIComponent', () => {
   });
 
   it('shows children when location and logging in complete', () => {
-    let api = {};
+    let api = new TodAPI();
     api.setup = jest.fn().mockImplementation((onRegister, onNotification, onError) => {
       onRegister();
     });
@@ -90,7 +102,7 @@ describe('APIComponent', () => {
   });
 
   it('shows error case when location is disabled', () => {
-    let api = {};
+    let api = new TodAPI();
     api.setup = jest.fn().mockImplementation((onRegister, onNotification, onError) => {
       onRegister();
     });
