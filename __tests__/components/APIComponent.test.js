@@ -7,6 +7,13 @@ import renderer from 'react-test-renderer';
 import APIComponent from '../../src/components/APIComponent.js';
 import TodAPI from '../../src/utils/TodAPI.js';
 
+function setup() {
+  navigator.geolocation.getCurrentPosition = jest.fn();
+  let api = {};
+  api.setup = jest.fn();
+  return api;
+}
+
 describe('APIComponent', () => {
   beforeEach(() => {
     navigator = {
@@ -17,40 +24,31 @@ describe('APIComponent', () => {
   })
 
   it('shows spinner while loading', () => {
-    let api = {};
-    api.setup = jest.fn();
-    let mockLocFunction = jest.fn()
-    navigator.geolocation.getCurrentPosition = mockLocFunction;
+    let api = setup();
     let component = renderer.create(
       <APIComponent
         api={api}
-        onComplete={jest.fn()}
+        onLocation={jest.fn()}
         onNotification={jest.fn()}
-      >
-        <Text>Example child component</Text>
-      </APIComponent>
+      />
     );
-    expect(mockLocFunction).not.toHaveBeenCalled();
+    expect(navigator.geolocation.getCurrentPosition).not.toHaveBeenCalled();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('checks location after logging in', () => {
-    let api = {};
+    let api = setup();
     api.setup = jest.fn().mockImplementation((onRegister, onNotification, onError) => {
       onRegister();
     });
-    let mockLocFunction = jest.fn();
-    navigator.geolocation.getCurrentPosition = mockLocFunction;
     let component = renderer.create(
       <APIComponent
         api={api}
-        onComplete={jest.fn()}
+        onLocation={jest.fn()}
         onNotification={jest.fn()}
-      >
-        <Text>Example child component</Text>
-      </APIComponent>
+      />
     );
-    expect(mockLocFunction).toHaveBeenCalled();
+    expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -67,34 +65,27 @@ describe('APIComponent', () => {
     let component = renderer.create(
       <APIComponent
         api={api}
-        onComplete={onComplete}
+        onLocation={onComplete}
         onNotification={jest.fn()}
-      >
-        <Text>Example child component</Text>
-      </APIComponent>
+      />
     );
     expect(mockLocFunction).toHaveBeenCalled();
     expect(onComplete).toHaveBeenCalled();
-    expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('shows error case on send token failure', () => {
-    let api = {};
+    let api = setup();
     api.setup = jest.fn().mockImplementation((onRegister, onNotification, onError) => {
       onError();
     });
-    let mockLocFunction = jest.fn();
-    navigator.geolocation.getCurrentPosition = mockLocFunction;
     let component = renderer.create(
       <APIComponent
         api={api}
-        onComplete={jest.fn()}
+        onLocation={jest.fn()}
         onNotification={jest.fn()}
-      >
-        <Text>Example child component</Text>
-      </APIComponent>
+      />
     );
-    expect(mockLocFunction).not.toHaveBeenCalled();
+    expect(navigator.geolocation.getCurrentPosition).not.toHaveBeenCalled();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -111,11 +102,9 @@ describe('APIComponent', () => {
     let component = renderer.create(
       <APIComponent
         api={api}
-        onComplete={onComplete}
+        onLocation={onComplete}
         onNotification={jest.fn()}
-      >
-        <Text>Example child component</Text>
-      </APIComponent>
+      />
     );
     expect(mockLocFunction).toHaveBeenCalled();
     expect(onComplete).not.toHaveBeenCalled();

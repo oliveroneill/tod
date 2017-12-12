@@ -32,16 +32,6 @@ exports[`APIComponent checks location after logging in 1`] = `
 </View>
 `;
 
-exports[`APIComponent shows children when location and logging in complete 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
->
-  Example child component
-</Text>
-`;
-
 exports[`APIComponent shows error case on send token failure 1`] = `
 <View>
   <View

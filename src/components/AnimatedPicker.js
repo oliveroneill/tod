@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
  */
 class AnimatedPicker extends Component {
   render() {
-    var defaultDate = new Date();
+    var defaultDate = new Date(Date.now());
     let usingAndroid = Platform.OS === 'android';
     let isDatePicker = this.props.type === "date";
     let isVisible = this.props.isVisible;
@@ -104,7 +104,7 @@ class AnimatedPicker extends Component {
           }
         </Modal>
       </View>
-    )
+    );
   }
 }
 

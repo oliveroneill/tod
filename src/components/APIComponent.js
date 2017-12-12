@@ -10,8 +10,7 @@ import TodAPI from '../utils/TodAPI.js';
 
 class APIComponent extends Component {
   state={
-    errored: false,
-    loading: true
+    errored: false
   };
   constructor(props) {
     super(props);
@@ -22,7 +21,6 @@ class APIComponent extends Component {
 
   initialise() {
     this.setState({'errored': false});
-    this.setState({'loading': true});
     let { api, onNotification } = this.props;
     api.setup(
       this.setupCurrentLocation,
@@ -34,13 +32,12 @@ class APIComponent extends Component {
   }
 
   setupCurrentLocation() {
-    let { onComplete } = this.props;
+    let { onLocation } = this.props;
     navigator.geolocation.getCurrentPosition(
       function(origin) {
         let lat = origin.coords.latitude;
         let lng = origin.coords.longitude;
-        this.setState({'loading': false});
-        onComplete(lat, lng);
+        onLocation(lat, lng);
       }.bind(this),
       function(error){
         Alert.alert("Please enable location and try again");
@@ -55,25 +52,21 @@ class APIComponent extends Component {
   }
 
   render() {
-    let {children} = this.props;
-    if (this.state.loading) {
-      return (
-        <LoadingScreen
-          errored={this.state.errored}
-          loadingMessage="Logging in..."
-          errorMessage="Unfortunately we couldn't log you in. Please ensure you have an internet connection."
-          retry={this.initialise}
-        />
-      )
-    }
-    return children;
+    return (
+      <LoadingScreen
+        errored={this.state.errored}
+        loadingMessage="Logging in..."
+        errorMessage="Unfortunately we couldn't log you in. Please ensure you have an internet connection."
+        retry={this.initialise}
+      />
+    )
   }
 }
 
 APIComponent.propTypes = {
   api: PropTypes.instanceOf(TodAPI).isRequired,
   onNotification: PropTypes.func.isRequired,
-  onComplete: PropTypes.func.isRequired,
+  onLocation: PropTypes.func.isRequired,
 }
 
 export default APIComponent;

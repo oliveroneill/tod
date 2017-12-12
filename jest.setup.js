@@ -30,7 +30,6 @@ global.fetch = jest.fn();
 
 moment.tz.setDefault('America/Chicago');
 
-
 // Enzyme setup
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

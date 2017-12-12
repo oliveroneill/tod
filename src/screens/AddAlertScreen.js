@@ -5,6 +5,7 @@ import {
   View,
   TouchableHighlight,
   Button,
+  Alert
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types';
@@ -22,7 +23,7 @@ const list = [
   "Every Friday",
   "Every Saturday",
   "Every Sunday"
-]
+];
 
 class AddAlertScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -72,13 +73,13 @@ class AddAlertScreen extends Component {
       this.state.enabled
     )
     .then(function() {
-      alert("Trip successfully scheduled!");
+      Alert.alert("Trip successfully scheduled!");
       this.setState({loading:false});
       this.props.navigation.goBack();
     }.bind(this))
     .catch(function() {
       this.setState({loading:false});
-      alert("Something went wrong. Please try again later");
+      Alert.alert("Something went wrong. Please try again later");
     }.bind(this));
   }
   componentWillMount() {
