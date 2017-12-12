@@ -37,7 +37,6 @@ Runs your app in development mode.
 #### `npm test`
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
-There are warnings for each of these tests caused by dependencies as well as type checking that can't be avoided via mocks. These can be ignored until the dependencies update from deprecated `PropTypes` usage. There is also a warning regarding the `Switch` component. I believe this is caused by calling `renderCell` directly where there is no state. This warning is mentioned in [TODO](#todo).
 
 #### `npm run ios`
 
@@ -60,6 +59,5 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 
 ## TODO
 - Use Redux
-- Figure out how to decouple route data from views so that we can easily snapshot test (this should fix `Switch` warning mentioned in `npm test` section above)
 - Add in an optional warning notification ten minutes before it's time to leave
 - Use linter such as [semistandard](https://github.com/Flet/semistandard)
