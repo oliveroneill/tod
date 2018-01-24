@@ -73,7 +73,8 @@ describe('AddAlertScreen', () => {
     // when
     scheduleTrip();
     // then
-    expect(api.scheduleTrip).toHaveBeenCalledWith(inputData.origin, inputData.dest,
+    expect(api.scheduleTrip).toHaveBeenCalledWith(
+      inputData.origin, inputData.dest,
       inputData.route, inputData.transport, inputData.inputArrival,
       inputData.inputArrivalDateString, inputData.waitingWindowMs,
       inputData.timezoneLocation,
@@ -108,7 +109,8 @@ describe('AddAlertScreen', () => {
     wrapper.find(ListItem).at(4).props().onPress();
     wrapper.update();
     scheduleTrip();
-    expect(api.scheduleTrip).toHaveBeenCalledWith(inputData.origin, inputData.dest,
+    expect(api.scheduleTrip).toHaveBeenCalledWith(
+      inputData.origin, inputData.dest,
       inputData.route, inputData.transport, inputData.inputArrival,
       inputData.inputArrivalDateString, inputData.waitingWindowMs,
       inputData.timezoneLocation,
@@ -141,7 +143,8 @@ describe('AddAlertScreen', () => {
     // when
     scheduleTrip();
     // then
-    expect(api.scheduleTrip).toHaveBeenCalledWith(inputData.origin, inputData.dest,
+    expect(api.scheduleTrip).toHaveBeenCalledWith(
+      inputData.origin, inputData.dest,
       inputData.route, inputData.transport, inputData.inputArrival,
       inputData.inputArrivalDateString, inputData.waitingWindowMs,
       inputData.timezoneLocation,
@@ -153,7 +156,9 @@ describe('AddAlertScreen', () => {
       wrapper.update();
     }).then(() => {
       wrapper.update();
-      expect(Alert.alert).toHaveBeenCalledWith("Something went wrong. Please try again later");
+      expect(Alert.alert).toHaveBeenCalledWith(
+        "Something went wrong. Please try again later"
+      );
     });
   });
 });
