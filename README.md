@@ -4,6 +4,10 @@
 
 React native app for scheduling trips so that a notification is sent when it's time to leave.
 
+## Status
+**Unmaintained** - React Native is a fast moving ecosystem, so unfortunately I
+haven't been able to give Tod the love and care that it deserves.
+
 ## Table of Contents
 
 * [Configuration](#configuration)
